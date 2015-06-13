@@ -1,5 +1,12 @@
 package org.kohsuke.stapler.idea;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.swing.ListCellRenderer;
+
+import org.apache.commons.lang.ArrayUtils;
+import org.jetbrains.annotations.NotNull;
 import com.intellij.ide.actions.GotoActionBase;
 import com.intellij.ide.util.DefaultPsiElementCellRenderer;
 import com.intellij.ide.util.gotoByName.ChooseByNameModel;
@@ -19,15 +26,9 @@ import com.intellij.psi.PsiDocumentManager;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiFile;
 import com.intellij.psi.PsiJavaFile;
-import com.intellij.psi.PsiPackage;
+import com.intellij.psi.PsiJavaPackage;
 import com.intellij.psi.util.PsiTreeUtil;
 import com.intellij.psi.util.PsiUtilBase;
-import org.apache.commons.lang.ArrayUtils;
-import org.jetbrains.annotations.NotNull;
-
-import javax.swing.*;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Select stapler views from a Java class.
@@ -59,9 +60,9 @@ public class GotoViewAction extends GotoActionBase {
 
         // build up packages that contain jelly views, in the order of preference
         // through inheritance hierarchy of the class
-        final List<PsiPackage> viewPackages = new ArrayList<PsiPackage>();
+        final List<PsiJavaPackage> viewPackages = new ArrayList<PsiJavaPackage>();
         while(clazz!=null) {
-            PsiPackage pkg = facade.findPackage(clazz.getQualifiedName());
+			PsiJavaPackage pkg = facade.findPackage(clazz.getQualifiedName());
             if(pkg!=null)   viewPackages.add(pkg);
             clazz = clazz.getSuperClass();
         }
@@ -107,7 +108,7 @@ public class GotoViewAction extends GotoActionBase {
 
             public String[] getNames(boolean checkBoxState) {
                 List<String> r = new ArrayList<String>();
-                for (PsiPackage pkg : viewPackages) {
+                for (PsiJavaPackage pkg : viewPackages) {
                     for (PsiDirectory dir : pkg.getDirectories()) {
                         for (PsiFile file : dir.getFiles()) {
                             String name = file.getName();
@@ -120,7 +121,7 @@ public class GotoViewAction extends GotoActionBase {
             }
 
             public Object[] getElementsByName(String name, boolean checkBoxState, String pattern) {
-                for (PsiPackage pkg : viewPackages) {
+                for (PsiJavaPackage pkg : viewPackages) {
                     for (PsiDirectory dir : pkg.getDirectories()) {
                         for (PsiFile file : dir.getFiles()) {
                             if(file.getName().equals(name+".jelly") || file.getName().equals(name+".groovy"))

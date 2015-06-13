@@ -6,7 +6,7 @@ import com.intellij.openapi.util.TextRange;
 import com.intellij.psi.JavaPsiFacade;
 import com.intellij.psi.PsiDirectory;
 import com.intellij.psi.PsiFile;
-import com.intellij.psi.PsiPackage;
+import com.intellij.psi.PsiJavaPackage;
 import com.intellij.psi.PsiReference;
 import com.intellij.psi.PsiReferenceBase;
 import com.intellij.psi.search.GlobalSearchScope;
@@ -55,7 +55,7 @@ public final class TagReference extends PsiReferenceBase<XmlTag> {
         String pkgName = nsUri.substring(1).replace('/', '.');
         // this invocation below successfully finds packages that includes
         // invalid characters like 'a-b-c'
-        PsiPackage pkg = javaPsi.findPackage(pkgName);
+		PsiJavaPackage pkg = javaPsi.findPackage(pkgName);
         if(pkg==null)   return null;
 
         PsiDirectory[] dirs = pkg.getDirectories(GlobalSearchScope.moduleWithDependenciesAndLibrariesScope(m, false));

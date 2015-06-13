@@ -1,25 +1,17 @@
 package org.kohsuke.stapler.idea;
 
-import com.intellij.psi.PsiDirectory;
-import com.intellij.psi.PsiElement;
-import com.intellij.psi.PsiFile;
-import com.intellij.psi.PsiReference;
-import com.intellij.psi.PsiReferenceBase;
-import com.intellij.psi.PsiReferenceProvider;
-import com.intellij.psi.JavaPsiFacade;
-import com.intellij.psi.PsiPackage;
-import com.intellij.psi.JavaDirectoryService;
-import com.intellij.psi.PsiClass;
+import org.apache.commons.lang.ArrayUtils;
+import org.consulo.psi.PsiPackage;
+import org.jetbrains.annotations.NotNull;
+import com.intellij.openapi.module.Module;
+import com.intellij.openapi.module.ModuleUtil;
+import com.intellij.openapi.util.TextRange;
+import com.intellij.psi.*;
 import com.intellij.psi.search.GlobalSearchScope;
 import com.intellij.psi.xml.XmlAttribute;
 import com.intellij.psi.xml.XmlAttributeValue;
 import com.intellij.psi.xml.XmlTag;
 import com.intellij.util.ProcessingContext;
-import com.intellij.openapi.util.TextRange;
-import com.intellij.openapi.module.ModuleUtil;
-import com.intellij.openapi.module.Module;
-import org.apache.commons.lang.ArrayUtils;
-import org.jetbrains.annotations.NotNull;
 
 /**
  * Let IDEA know what some of the attribute values are referring to.
@@ -95,7 +87,7 @@ public class JellyTagLibReferenceProvider extends PsiReferenceProvider {
                     if(page.startsWith("/")) {
                         // absolute
                         String pkg = page.substring(1,page.lastIndexOf('/')).replace('/','.');
-                        PsiPackage jpkg = javaFacade.findPackage(pkg);
+                        PsiJavaPackage jpkg = javaFacade.findPackage(pkg);
                         if(jpkg==null)  return null;
                         for (PsiDirectory dir : jpkg.getDirectories()) {
                             PsiFile f = dir.findFile(page.substring(page.lastIndexOf('/') + 1));

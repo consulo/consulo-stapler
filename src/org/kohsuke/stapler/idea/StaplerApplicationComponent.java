@@ -1,7 +1,12 @@
 package org.kohsuke.stapler.idea;
 
+import java.net.URL;
+
+import org.jetbrains.annotations.NonNls;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+import org.kohsuke.stapler.idea.descriptor.XmlNSDescriptorImpl;
 import com.intellij.codeInspection.InspectionToolProvider;
-import com.intellij.facet.FacetTypeRegistry;
 import com.intellij.javaee.ExternalResourceManager;
 import com.intellij.lang.LanguageAnnotators;
 import com.intellij.lang.LanguageDocumentation;
@@ -17,12 +22,6 @@ import com.intellij.psi.filters.position.NamespaceFilter;
 import com.intellij.psi.meta.MetaDataRegistrar;
 import com.intellij.psi.xml.XmlDocument;
 import com.intellij.util.io.URLUtil;
-import org.jetbrains.annotations.NonNls;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
-import org.kohsuke.stapler.idea.descriptor.XmlNSDescriptorImpl;
-
-import java.net.URL;
 
 /**
  * @author Kohsuke Kawaguchi
@@ -34,7 +33,6 @@ public class StaplerApplicationComponent implements ApplicationComponent, Inspec
     }
 
     public void initComponent() {
-        FacetTypeRegistry.getInstance().registerFacetType(StaplerFacetType.INSTANCE);
 
 
         ApplicationManager.getApplication().runWriteAction(new Runnable() {
