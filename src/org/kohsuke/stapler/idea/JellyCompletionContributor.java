@@ -1,26 +1,26 @@
 package org.kohsuke.stapler.idea;
 
+import org.jetbrains.annotations.NotNull;
+import org.kohsuke.stapler.idea.descriptor.XmlNSDescriptorImpl;
+import com.intellij.codeInsight.TailType;
 import com.intellij.codeInsight.completion.CompletionContributor;
 import com.intellij.codeInsight.completion.CompletionParameters;
 import com.intellij.codeInsight.completion.CompletionProvider;
 import com.intellij.codeInsight.completion.CompletionResultSet;
 import com.intellij.codeInsight.completion.CompletionType;
 import com.intellij.codeInsight.lookup.LookupItem;
-import com.intellij.codeInsight.TailType;
 import com.intellij.openapi.module.Module;
 import com.intellij.openapi.module.ModuleUtil;
 import com.intellij.patterns.ElementPattern;
 import com.intellij.patterns.XmlElementPattern;
+import com.intellij.psi.impl.source.xml.TagNameReference;
 import com.intellij.psi.xml.XmlAttribute;
+import com.intellij.psi.xml.XmlDocument;
 import com.intellij.psi.xml.XmlElement;
 import com.intellij.psi.xml.XmlTag;
 import com.intellij.psi.xml.XmlToken;
-import com.intellij.psi.xml.XmlDocument;
-import com.intellij.psi.impl.source.xml.TagNameReference;
 import com.intellij.util.ProcessingContext;
 import com.intellij.xml.XmlElementDescriptor;
-import org.jetbrains.annotations.NotNull;
-import org.kohsuke.stapler.idea.descriptor.XmlNSDescriptorImpl;
 
 /**
  * Tag name completion for Jelly tag libraries defined as tag files.
@@ -68,7 +68,7 @@ public class JellyCompletionContributor extends CompletionContributor {
     public JellyCompletionContributor() {
         extend(CompletionType.BASIC, // in case of XML completion, this always seems to be BASIC
                 XML_ELEMENT_NAME_PATTERN,
-                new CompletionProvider<CompletionParameters>(true) {
+                new CompletionProvider<CompletionParameters>() {
                     // REFERENCE: spring plugin adds CompletionContributor as well.
                     protected void addCompletions(@NotNull CompletionParameters parameters, ProcessingContext context, @NotNull CompletionResultSet result) {
                         XmlElement name = (XmlElement)parameters.getPosition();

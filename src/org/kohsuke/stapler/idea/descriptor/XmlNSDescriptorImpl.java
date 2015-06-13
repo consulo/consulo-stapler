@@ -1,23 +1,23 @@
 package org.kohsuke.stapler.idea.descriptor;
 
-import com.intellij.xml.XmlNSDescriptor;
-import com.intellij.xml.XmlElementDescriptor;
-import com.intellij.psi.xml.XmlTag;
-import com.intellij.psi.xml.XmlDocument;
-import com.intellij.psi.xml.XmlFile;
-import com.intellij.psi.PsiElement;
-import com.intellij.psi.PsiFile;
-import com.intellij.psi.PsiDirectory;
-import com.intellij.psi.JavaPsiFacade;
-import com.intellij.psi.PsiPackage;
-import com.intellij.psi.search.GlobalSearchScope;
-import com.intellij.openapi.module.Module;
-import com.intellij.openapi.module.ModuleUtil;
+import java.util.ArrayList;
+import java.util.List;
+
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-
-import java.util.List;
-import java.util.ArrayList;
+import com.intellij.openapi.module.Module;
+import com.intellij.openapi.module.ModuleUtil;
+import com.intellij.psi.JavaPsiFacade;
+import com.intellij.psi.PsiDirectory;
+import com.intellij.psi.PsiElement;
+import com.intellij.psi.PsiFile;
+import com.intellij.psi.PsiJavaPackage;
+import com.intellij.psi.search.GlobalSearchScope;
+import com.intellij.psi.xml.XmlDocument;
+import com.intellij.psi.xml.XmlFile;
+import com.intellij.psi.xml.XmlTag;
+import com.intellij.xml.XmlElementDescriptor;
+import com.intellij.xml.XmlNSDescriptor;
 
 /**
  * @author Kohsuke Kawaguchi
@@ -129,7 +129,7 @@ public class XmlNSDescriptorImpl implements XmlNSDescriptor {
         String pkgName = nsUri.substring(1).replace('/', '.');
         // this invocation below successfully finds packages that includes
         // invalid characters like 'a-b-c'
-        PsiPackage pkg = javaPsi.findPackage(pkgName);
+		PsiJavaPackage pkg = javaPsi.findPackage(pkgName);
         if(pkg==null)   return null;
 
         PsiDirectory[] dirs = pkg.getDirectories(GlobalSearchScope.moduleWithDependenciesAndLibrariesScope(module, false));

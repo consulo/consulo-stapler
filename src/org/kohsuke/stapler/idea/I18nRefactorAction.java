@@ -1,5 +1,8 @@
 package org.kohsuke.stapler.idea;
 
+import java.util.List;
+
+import org.jetbrains.annotations.Nullable;
 import com.intellij.lang.properties.IProperty;
 import com.intellij.lang.properties.psi.PropertiesElementFactory;
 import com.intellij.lang.properties.psi.PropertiesFile;
@@ -14,24 +17,8 @@ import com.intellij.openapi.editor.actionSystem.EditorActionHandler;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.ui.Messages;
 import com.intellij.openapi.util.TextRange;
-import com.intellij.psi.JavaTokenType;
-import com.intellij.psi.PsiBinaryExpression;
-import com.intellij.psi.PsiClassType;
-import com.intellij.psi.PsiDirectory;
-import com.intellij.psi.PsiDocumentManager;
-import com.intellij.psi.PsiElement;
-import com.intellij.psi.PsiExpression;
-import com.intellij.psi.PsiFile;
-import com.intellij.psi.PsiJavaFile;
-import com.intellij.psi.PsiLiteralExpression;
-import com.intellij.psi.PsiManager;
-import com.intellij.psi.PsiPackage;
-import com.intellij.psi.PsiType;
-import com.intellij.psi.JavaPsiFacade;
+import com.intellij.psi.*;
 import com.intellij.util.IncorrectOperationException;
-import org.jetbrains.annotations.Nullable;
-
-import java.util.List;
 
 /**
  * Internationalize the current selected text.
@@ -207,7 +194,7 @@ public class I18nRefactorAction extends EditorAction {
              * Locates <tt>Messages.properties</tt> in the same package
              */
             private PsiFile findMessagesDotProperties(Project project, PsiJavaFile javaFile) {
-                PsiPackage pkg = JavaPsiFacade.getInstance(project).findPackage(javaFile.getPackageName());
+				PsiJavaPackage pkg = JavaPsiFacade.getInstance(project).findPackage(javaFile.getPackageName());
                 for(PsiDirectory dir : pkg.getDirectories()) {
                     PsiFile props = dir.findFile("Messages.properties");
                     if(props!=null) return props;
