@@ -1,4 +1,5 @@
 <idea-plugin>
+	<id>org.mustbe.consulo.stapler</id>
 	<name>Stapler</name>
 	<version>SNAPSHOT</version>
 	<vendor url="http://www.kohsuke.org/" email="kk@kohsuke.org">Kohsuke Kawaguchi</vendor>
@@ -31,16 +32,69 @@
 		</component>
 	</project-components>
 
+	<extensions defaultExtensionNs="com.intellij.xml">
+		<standardResource url="jelly:ant" path="/standardSchemas/ant.xsd"/>
+		<standardResource url="jelly:antlr" path="/standardSchemas/antlr.xsd"/>
+		<standardResource url="jelly:bean" path="/standardSchemas/bean.xsd"/>
+		<standardResource url="jelly:beanshell" path="/standardSchemas/beanshell.xsd"/>
+		<standardResource url="jelly:betwixt" path="/standardSchemas/betwixt.xsd"/>
+		<standardResource url="jelly:bsf" path="/standardSchemas/bsf.xsd"/>
+		<standardResource url="jelly:core" path="/standardSchemas/core.xsd"/>
+		<standardResource url="jelly:define" path="/standardSchemas/define.xsd"/>
+		<standardResource url="jelly:dynabean" path="/standardSchemas/dynabean.xsd"/>
+		<standardResource url="jelly:email" path="/standardSchemas/email.xsd"/>
+		<standardResource url="jelly:fmt" path="/standardSchemas/fmt.xsd"/>
+		<standardResource url="jelly:html" path="/standardSchemas/html.xsd"/>
+		<standardResource url="jelly:http" path="/standardSchemas/http.xsd"/>
+		<standardResource url="jelly:interaction" path="/standardSchemas/interaction.xsd"/>
+		<standardResource url="jelly:jaxme" path="/standardSchemas/jaxme.xsd"/>
+		<standardResource url="jelly:jetty" path="/standardSchemas/jetty.xsd"/>
+		<standardResource url="jelly:jface" path="/standardSchemas/jface.xsd"/>
+		<standardResource url="jelly:jms" path="/standardSchemas/jms.xsd"/>
+		<standardResource url="jelly:jmx" path="/standardSchemas/jmx.xsd"/>
+		<standardResource url="jelly:jsl" path="/standardSchemas/jsl.xsd"/>
+		<standardResource url="jelly:junit" path="/standardSchemas/junit.xsd"/>
+		<standardResource url="jelly:log" path="/standardSchemas/log.xsd"/>
+		<standardResource url="jelly:memory" path="/standardSchemas/memory.xsd"/>
+		<standardResource url="jelly:ojb" path="/standardSchemas/ojb.xsd"/>
+		<standardResource url="jelly:quartz" path="/standardSchemas/quartz.xsd"/>
+		<standardResource url="jelly:regexp" path="/standardSchemas/regexp.xsd"/>
+		<standardResource url="jelly:soap" path="/standardSchemas/soap.xsd"/>
+		<standardResource url="jelly:sql" path="/standardSchemas/sql.xsd"/>
+		<standardResource url="jelly:swing" path="/standardSchemas/swing.xsd"/>
+		<standardResource url="jelly:swt" path="/standardSchemas/swt.xsd"/>
+		<standardResource url="jelly:threads" path="/standardSchemas/threads.xsd"/>
+		<standardResource url="jelly:util" path="/standardSchemas/util.xsd"/>
+		<standardResource url="jelly:validate" path="/standardSchemas/validate.xsd"/>
+		<standardResource url="jelly:velocity" path="/standardSchemas/velocity.xsd"/>
+		<standardResource url="jelly:xml" path="/standardSchemas/xml.xsd"/>
+		<standardResource url="jelly:xmlunit" path="/standardSchemas/xmlunit.xsd"/>
+		<standardResource url="jelly:stapler" path="/standardSchemas/stapler.xsd"/>
+
+		<standardResource url="/lib/form" path="/standardSchemas/taglib/form.xsd"/>
+		<standardResource url="/lib/hudson" path="/standardSchemas/taglib/hudson.xsd"/>
+		<standardResource url="/lib/layout" path="/standardSchemas/taglib/layout.xsd"/>
+		<standardResource url="/lib/newFormList" path="/standardSchemas/taglib/newFormList.xsd"/>
+		<standardResource url="/lib/project" path="/standardSchemas/taglib/project.xsd"/>
+		<standardResource url="/lib/test" path="/standardSchemas/taglib/test.xsd"/>
+	</extensions>
+
 	<extensions defaultExtensionNs="com.intellij">
+		<annotator language="XML" implementationClass="org.kohsuke.stapler.idea.JellyAnnotator"/>
+
+		<lang.documentationProvider language="XML" implementationClass="org.kohsuke.stapler.idea.JellyDocumentationProvider"/>
+
 		<completion.contributor language="XML" implementationClass="org.kohsuke.stapler.idea.JellyCompletionContributor"/>
 
 		<xml.schemaProvider implementation="org.kohsuke.stapler.idea.descriptor.XmlSchemaProviderImpl"/>
+
+		<fileTypeFactory implementation="org.mustbe.consulo.stapler.StaplerFileTypeFactory"/>
 
 		<moduleExtensionProvider key="stapler"
 								 parentKey="java"
 								 icon="/icons/stapler.png"
 								 name="Stapler"
 								 immutableClass="org.mustbe.consulo.stapler.module.extension.StaplerModuleExtension"
-								 mutableClass="org.mustbe.consulo.stapler.module.extension.StaplerMutableModuleExtension" />
+								 mutableClass="org.mustbe.consulo.stapler.module.extension.StaplerMutableModuleExtension"/>
 	</extensions>
 </idea-plugin>

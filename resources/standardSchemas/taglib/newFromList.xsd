@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?><xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="/lib/hudson/newFromList" elementFormDefault="qualified">
+    <xsd:annotation>
+<xsd:documentation>These tags provide a higher level primitive for building a form page for creating a new item from a list of descriptors.
+Used in "create new job" page, for an example.</xsd:documentation>
+</xsd:annotation>
+    <xsd:element name="form">
+<xsd:annotation>
+<xsd:documentation>
+    Generates a form for creating something out of descriptors by (1) selecting a descriptor and specifying a name.
+    This also presents a copy option. This should be placed inside &lt;l:main-panel&gt;.
+
+    
+    
+    
+    
+    
+    
+  </xsd:documentation>
+</xsd:annotation>
+<xsd:complexType mixed="true">
+<xsd:attribute name="action">
+<xsd:annotation>
+<xsd:documentation>
+      Specify where the form will be submitted to. Defaults to 'createItem'.
+    </xsd:documentation>
+</xsd:annotation>
+</xsd:attribute>
+<xsd:attribute name="descriptors" use="required">
+<xsd:annotation>
+<xsd:documentation>
+      Collection of Descriptors to be rendered.
+    </xsd:documentation>
+</xsd:annotation>
+</xsd:attribute>
+<xsd:attribute name="nameTitle" use="required">
+<xsd:annotation>
+<xsd:documentation>
+      Caption of the text box to receive the name of the newly created item. Something like "Job name"
+    </xsd:documentation>
+</xsd:annotation>
+</xsd:attribute>
+<xsd:attribute name="copyTitle">
+<xsd:annotation>
+<xsd:documentation>
+      Caption of the radio button that allows the user to copy from something that already exists.
+    </xsd:documentation>
+</xsd:annotation>
+</xsd:attribute>
+<xsd:attribute name="showCopyOption">
+<xsd:annotation>
+<xsd:documentation>
+      If true, an extra radio button will appear that allows the user to copy from something that already exists.
+      See @copyTitle.
+    </xsd:documentation>
+</xsd:annotation>
+</xsd:attribute>
+<xsd:attribute name="checkUrl" use="required">
+<xsd:annotation>
+<xsd:documentation>
+      relative URL that point to the check method that validates the new name.
+    </xsd:documentation>
+</xsd:annotation>
+</xsd:attribute>
+</xsd:complexType>
+</xsd:element>
+  </xsd:schema>

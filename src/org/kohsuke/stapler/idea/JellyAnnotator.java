@@ -1,5 +1,6 @@
 package org.kohsuke.stapler.idea;
 
+import org.mustbe.consulo.stapler.JellyFileType;
 import com.intellij.lang.annotation.AnnotationHolder;
 import com.intellij.lang.annotation.Annotator;
 import com.intellij.psi.PsiElement;
@@ -26,7 +27,7 @@ public class JellyAnnotator implements Annotator {
         if (psi instanceof XmlTag) {
             XmlTag tag = (XmlTag) psi;
 
-            if(!tag.getContainingFile().getName().endsWith(".jelly"))
+            if(tag.getContainingFile().getFileType() != JellyFileType.INSTANCE)
                 return; // only do this in Jelly files
 
             // for elements

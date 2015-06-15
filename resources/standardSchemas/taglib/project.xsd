@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?><xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="/lib/hudson/project" elementFormDefault="qualified">
+    <xsd:annotation>
+<xsd:documentation>Tag files used in project pages</xsd:documentation>
+</xsd:annotation>
+    <xsd:element name="config-builders">
+<xsd:annotation>
+<xsd:documentation/>
+</xsd:annotation>
+<xsd:complexType mixed="true"/>
+</xsd:element>
+    <xsd:element name="config-publishers">
+<xsd:annotation>
+<xsd:documentation>
+    Deprecated as of 1.463. Use &lt;config-publishers2&gt; and update your code to do
+    publishers.rebuildHetero(req, json, Publisher.all(), "publisher");
+  </xsd:documentation>
+</xsd:annotation>
+<xsd:complexType mixed="true"/>
+</xsd:element>
+    <xsd:element name="config-blockWhenDownstreamBuilding">
+<xsd:annotation>
+<xsd:documentation/>
+</xsd:annotation>
+<xsd:complexType mixed="true"/>
+</xsd:element>
+    <xsd:element name="config-retryCount">
+<xsd:annotation>
+<xsd:documentation/>
+</xsd:annotation>
+<xsd:complexType mixed="true"/>
+</xsd:element>
+    <xsd:element name="upstream-downstream">
+<xsd:annotation>
+<xsd:documentation/>
+</xsd:annotation>
+<xsd:complexType mixed="true"/>
+</xsd:element>
+    <xsd:element name="config-upstream-pseudo-trigger">
+<xsd:annotation>
+<xsd:documentation/>
+</xsd:annotation>
+<xsd:complexType mixed="true"/>
+</xsd:element>
+    <xsd:element name="config-customWorkspace">
+<xsd:annotation>
+<xsd:documentation/>
+</xsd:annotation>
+<xsd:complexType mixed="true"/>
+</xsd:element>
+    <xsd:element name="console-link">
+<xsd:annotation>
+<xsd:documentation/>
+</xsd:annotation>
+<xsd:complexType mixed="true"/>
+</xsd:element>
+    <xsd:element name="config-scm">
+<xsd:annotation>
+<xsd:documentation/>
+</xsd:annotation>
+<xsd:complexType mixed="true"/>
+</xsd:element>
+    <xsd:element name="config-blockWhenUpstreamBuilding">
+<xsd:annotation>
+<xsd:documentation/>
+</xsd:annotation>
+<xsd:complexType mixed="true"/>
+</xsd:element>
+    <xsd:element name="configurable">
+<xsd:annotation>
+<xsd:documentation/>
+</xsd:annotation>
+<xsd:complexType mixed="true"/>
+</xsd:element>
+    <xsd:element name="config-assignedLabel">
+<xsd:annotation>
+<xsd:documentation/>
+</xsd:annotation>
+<xsd:complexType mixed="true"/>
+</xsd:element>
+    <xsd:element name="config-concurrentBuild">
+<xsd:annotation>
+<xsd:documentation/>
+</xsd:annotation>
+<xsd:complexType mixed="true"/>
+</xsd:element>
+    <xsd:element name="config-buildWrappers">
+<xsd:annotation>
+<xsd:documentation/>
+</xsd:annotation>
+<xsd:complexType mixed="true"/>
+</xsd:element>
+    <xsd:element name="config-trigger">
+<xsd:annotation>
+<xsd:documentation/>
+</xsd:annotation>
+<xsd:complexType mixed="true">
+<xsd:sequence>
+<xsd:any processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+</xsd:sequence>
+</xsd:complexType>
+</xsd:element>
+    <xsd:element name="config-disableBuild">
+<xsd:annotation>
+<xsd:documentation/>
+</xsd:annotation>
+<xsd:complexType mixed="true"/>
+</xsd:element>
+    <xsd:element name="config-quietPeriod">
+<xsd:annotation>
+<xsd:documentation/>
+</xsd:annotation>
+<xsd:complexType mixed="true"/>
+</xsd:element>
+    <xsd:element name="config-publishers2">
+<xsd:annotation>
+<xsd:documentation/>
+</xsd:annotation>
+<xsd:complexType mixed="true"/>
+</xsd:element>
+    <xsd:element name="build-permalink">
+<xsd:annotation>
+<xsd:documentation/>
+</xsd:annotation>
+<xsd:complexType mixed="true"/>
+</xsd:element>
+    <xsd:element name="projectActionFloatingBox">
+<xsd:annotation>
+<xsd:documentation/>
+</xsd:annotation>
+<xsd:complexType mixed="true"/>
+</xsd:element>
+  </xsd:schema>

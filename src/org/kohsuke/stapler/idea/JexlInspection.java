@@ -12,6 +12,7 @@ import com.intellij.codeInspection.LocalQuickFix;
 import com.intellij.codeInspection.ProblemDescriptor;
 import com.intellij.codeInspection.ProblemHighlightType;
 import com.intellij.openapi.util.TextRange;
+import com.intellij.openapi.util.UnfairTextRange;
 import com.intellij.psi.xml.XmlAttributeValue;
 import com.intellij.psi.xml.XmlElement;
 import com.intellij.psi.xml.XmlText;
@@ -210,7 +211,7 @@ public class JexlInspection extends LocalXmlInspectionTool {
     }
 
     private TextRange shrink(TextRange range, int l, int r) {
-        return new TextRange(range.getStartOffset()-l, range.getEndOffset()-r);
+        return new UnfairTextRange(range.getStartOffset()-l, range.getEndOffset()-r);
     }
 
     /**

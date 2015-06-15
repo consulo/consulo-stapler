@@ -2,6 +2,7 @@ package org.kohsuke.stapler.idea;
 
 import org.jetbrains.annotations.NotNull;
 import org.kohsuke.stapler.idea.descriptor.XmlNSDescriptorImpl;
+import org.mustbe.consulo.stapler.JellyFileType;
 import com.intellij.codeInsight.TailType;
 import com.intellij.codeInsight.completion.CompletionContributor;
 import com.intellij.codeInsight.completion.CompletionParameters;
@@ -74,7 +75,7 @@ public class JellyCompletionContributor extends CompletionContributor {
                         XmlElement name = (XmlElement)parameters.getPosition();
 
                         // do this only inside Jelly files
-                        if(!name.getContainingFile().getName().endsWith(".jelly"))
+                        if(name.getContainingFile().getFileType() != JellyFileType.INSTANCE)
                             return;
 
                         // this pseudo-tag represents the tag being completed.

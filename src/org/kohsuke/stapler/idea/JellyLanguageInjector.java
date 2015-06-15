@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.jetbrains.annotations.NotNull;
+import org.mustbe.consulo.stapler.JellyFileType;
 import com.intellij.lang.Language;
 import com.intellij.lang.injection.MultiHostInjector;
 import com.intellij.lang.injection.MultiHostRegistrar;
@@ -26,7 +27,7 @@ public class JellyLanguageInjector implements MultiHostInjector {
     @Override
     public void injectLanguages(@NotNull final MultiHostRegistrar registrar, @NotNull PsiElement context)
     {
-		if(!context.getContainingFile().getName().endsWith(".jelly"))
+		if(context.getContainingFile().getFileType() != JellyFileType.INSTANCE)
 			return; // not a jelly file
 
 		// inject CSS to @style
