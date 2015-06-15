@@ -1,5 +1,10 @@
 package org.kohsuke.stapler.idea;
 
+import org.apache.commons.jexl.ExpressionFactory;
+import org.apache.commons.jexl.parser.ParseException;
+import org.jetbrains.annotations.Nls;
+import org.jetbrains.annotations.NotNull;
+import org.mustbe.consulo.RequiredReadAction;
 import com.intellij.codeHighlighting.HighlightDisplayLevel;
 import com.intellij.codeInsight.daemon.GroupNames;
 import com.intellij.codeInspection.InspectionManager;
@@ -7,13 +12,9 @@ import com.intellij.codeInspection.LocalQuickFix;
 import com.intellij.codeInspection.ProblemDescriptor;
 import com.intellij.codeInspection.ProblemHighlightType;
 import com.intellij.openapi.util.TextRange;
-import com.intellij.psi.xml.XmlText;
-import com.intellij.psi.xml.XmlElement;
 import com.intellij.psi.xml.XmlAttributeValue;
-import org.apache.commons.jexl.ExpressionFactory;
-import org.apache.commons.jexl.parser.ParseException;
-import org.jetbrains.annotations.Nls;
-import org.jetbrains.annotations.NotNull;
+import com.intellij.psi.xml.XmlElement;
+import com.intellij.psi.xml.XmlText;
 
 /**
  * @author Kohsuke Kawaguchi
@@ -65,6 +66,7 @@ public class JexlInspection extends LocalXmlInspectionTool {
      * @param range
      *      Text range in the document that the 'text' parameter represents
      */
+	@RequiredReadAction
     protected ProblemDescriptor[] check(XmlElement psi, InspectionManager manager, String text, TextRange range) {
         if(!psi.getContainingFile().getName().endsWith(".jelly"))
             return EMPTY_ARRAY; // not a jelly script

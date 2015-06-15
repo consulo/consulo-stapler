@@ -1,0 +1,18 @@
+<component name="ArtifactManager">
+  <artifact name="dist">
+    <output-path>$PROJECT_DIR$/out/artifacts/dist</output-path>
+    <root id="root">
+      <element id="directory" name="stapler">
+        <element id="directory" name="lib">
+          <element id="zip-archive" name="stapler.jar">
+            <element id="module-production-resource-output" name="consulo-stapler" />
+            <element id="module-output" name="consulo-stapler" />
+          </element>
+          <element id="file-copy" path="$PROJECT_DIR$/lib/net.java.textilej_2.2.864.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/lib/commons-jexl-1.1-jenkins-20111212.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/lib/commons-jexl-1.1-jenkins-20111212-sources.jar" />
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>

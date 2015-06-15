@@ -1,46 +1,46 @@
 <idea-plugin>
-  <name>Stapler</name>
-  <description>Stapler plugin for IntelliJ IDEA 11</description>
-  <version>SNAPSHOT</version>
-  <vendor url="http://www.kohsuke.org/" email="kk@kohsuke.org">Kohsuke Kawaguchi</vendor>
+	<name>Stapler</name>
+	<version>SNAPSHOT</version>
+	<vendor url="http://www.kohsuke.org/" email="kk@kohsuke.org">Kohsuke Kawaguchi</vendor>
 
+	<actions>
+		<action id="GotoStaplerView" class="org.kohsuke.stapler.idea.GotoViewAction"
+				text="Goto Stapler View" description="Jump from a Java class to its stapler views">
+			<keyboard-shortcut keymap="$default" first-keystroke="ctrl shift P"/>
+			<add-to-group group-id="GoToCodeGroup" anchor="after" relative-to-action="GotoSuperMethod"/>
+		</action>
+		<action id="stapler-i18n" class="org.kohsuke.stapler.idea.I18nRefactorAction" text="i18n for stapler" description="i18n for stapler">
+			<keyboard-shortcut keymap="$default" first-keystroke="ctrl alt I"/>
+			<add-to-group group-id="RefactoringMenu" anchor="after" relative-to-action="I18nize"/>
+		</action>
+	</actions>
 
-  <extensions defaultExtensionNs="com.intellij">
-    <completion.contributor language="XML" implementationClass="org.kohsuke.stapler.idea.JellyCompletionContributor" />
-    <!--<xml.elementDescriptorProvider implementation="org.kohsuke.stapler.idea.descriptor.XmlElementDescriptorProviderImpl" />-->
-    <!-- I initially thought of using this to drive auto-completion,
-      but it doesn't really work as I hoped for. So I'm switching to CompletionContribuer.
-    <dom.extender domClass=     "org.kohsuke.stapler.idea.dom.model.JellyTag"
-                  extenderClass="org.kohsuke.stapler.idea.dom.model.JellyTagExtender"/>
-    -->
-    <xml.schemaProvider implementation="org.kohsuke.stapler.idea.descriptor.XmlSchemaProviderImpl" />
-   </extensions>
+	<depends>com.intellij.properties</depends>
 
-  <actions>
-    <!-- insert Action from the project view (Alt+1,Alt+INS) to see the possible locations -->
-    <action id="GotoStaplerView" class="org.kohsuke.stapler.idea.GotoViewAction"
-            text="Goto Stapler View" description="Jump from a Java class to its stapler views">
-      <keyboard-shortcut keymap="$default" first-keystroke="ctrl shift P"/>
-      <add-to-group group-id="GoToCodeGroup" anchor="after" relative-to-action="GotoSuperMethod" />
-    </action>
-    <action id="stapler-i18n" class="org.kohsuke.stapler.idea.I18nRefactorAction" text="i18n for stapler" description="i18n for stapler">
-      <keyboard-shortcut keymap="$default" first-keystroke="ctrl alt I"/>
-      <add-to-group group-id="RefactoringMenu" anchor="after" relative-to-action="I18nize"/>
-    </action>
-  </actions>
+	<depends>com.intellij.xml</depends>
+	<depends>org.consulo.java</depends>
+	<application-components>
+		<component>
+			<implementation-class>org.kohsuke.stapler.idea.StaplerApplicationComponent</implementation-class>
+		</component>
+	</application-components>
 
-  <depends>com.intellij.properties</depends>
-  <depends>com.intellij.xml</depends>
-  <depends>org.consulo.java</depends>
+	<project-components>
+		<component>
+			<implementation-class>org.kohsuke.stapler.idea.StaplerProjectComponent</implementation-class>
+		</component>
+	</project-components>
 
-  <application-components>
-      <component>
-          <implementation-class>org.kohsuke.stapler.idea.StaplerApplicationComponent</implementation-class>
-      </component>
-  </application-components>
-  <project-components>
-      <component>
-          <implementation-class>org.kohsuke.stapler.idea.StaplerProjectComponent</implementation-class>
-      </component>
-  </project-components>
+	<extensions defaultExtensionNs="com.intellij">
+		<completion.contributor language="XML" implementationClass="org.kohsuke.stapler.idea.JellyCompletionContributor"/>
+
+		<xml.schemaProvider implementation="org.kohsuke.stapler.idea.descriptor.XmlSchemaProviderImpl"/>
+
+		<moduleExtensionProvider key="stapler"
+								 parentKey="java"
+								 icon="/icons/stapler.png"
+								 name="Stapler"
+								 immutableClass="org.mustbe.consulo.stapler.module.extension.StaplerModuleExtension"
+								 mutableClass="org.mustbe.consulo.stapler.module.extension.StaplerMutableModuleExtension" />
+	</extensions>
 </idea-plugin>

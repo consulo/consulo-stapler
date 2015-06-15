@@ -45,7 +45,7 @@ public class StaplerApplicationComponent implements ApplicationComponent, Inspec
                 {// register schemas for Jelly
                     String[] schemas = {"ant","antlr","bean","beanshell","betwixt","bsf","core","define","dynabean","email","fmt","html","http","interaction","jaxme","jetty","jface","jms","jmx","jsl","junit","log","memory","ojb","quartz","regexp","soap","sql","swing","swt","threads","util","validate","velocity","xml","xmlunit","stapler"};
                     for( String s: schemas ) {
-                        String name = "/org/kohsuke/stapler/idea/resources/schemas/" + s + ".xsd";
+                        String name = "/schemas/" + s + ".xsd";
                         URL res = getClass().getClassLoader().getResource(name);
                         if (res==null)
                             throw new AssertionError("Failed to find schema resource: "+name);
