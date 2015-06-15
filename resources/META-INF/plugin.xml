@@ -26,11 +26,6 @@
 		</component>
 	</application-components>
 
-	<project-components>
-		<component>
-			<implementation-class>org.kohsuke.stapler.idea.StaplerProjectComponent</implementation-class>
-		</component>
-	</project-components>
 
 	<extensions defaultExtensionNs="com.intellij.xml">
 		<standardResource url="jelly:ant" path="/standardSchemas/ant.xsd"/>
@@ -89,6 +84,9 @@
 		<xml.schemaProvider implementation="org.kohsuke.stapler.idea.descriptor.XmlSchemaProviderImpl"/>
 
 		<fileTypeFactory implementation="org.mustbe.consulo.stapler.StaplerFileTypeFactory"/>
+
+		<multiHostInjector forClass="com.intellij.psi.xml.XmlAttributeValue" implementationClass="org.kohsuke.stapler.idea.JellyLanguageInjector"/>
+		<multiHostInjector forClass="com.intellij.psi.xml.XmlTag" implementationClass="org.kohsuke.stapler.idea.JellyLanguageInjector"/>
 
 		<moduleExtensionProvider key="stapler"
 								 parentKey="java"

@@ -1,8 +1,5 @@
 package org.kohsuke.stapler.idea;
 
-import java.util.Arrays;
-import java.util.List;
-
 import org.jetbrains.annotations.NotNull;
 import org.mustbe.consulo.stapler.JellyFileType;
 import com.intellij.lang.Language;
@@ -14,7 +11,6 @@ import com.intellij.psi.PsiLanguageInjectionHost;
 import com.intellij.psi.XmlElementVisitor;
 import com.intellij.psi.xml.XmlAttribute;
 import com.intellij.psi.xml.XmlAttributeValue;
-import com.intellij.psi.xml.XmlElement;
 import com.intellij.psi.xml.XmlTag;
 import com.intellij.psi.xml.XmlText;
 
@@ -23,38 +19,48 @@ import com.intellij.psi.xml.XmlText;
  *
  * @author Kohsuke Kawaguchi
  */
-public class JellyLanguageInjector implements MultiHostInjector {
-    @Override
-    public void injectLanguages(@NotNull final MultiHostRegistrar registrar, @NotNull PsiElement context)
-    {
+public class JellyLanguageInjector implements MultiHostInjector
+{
+	@Override
+	public void injectLanguages(@NotNull final MultiHostRegistrar registrar, @NotNull PsiElement context)
+	{
 		if(context.getContainingFile().getFileType() != JellyFileType.INSTANCE)
+		{
 			return; // not a jelly file
+		}
 
 		// inject CSS to @style
-		if (context instanceof XmlAttributeValue) {
-			final XmlAttributeValue value = (XmlAttributeValue)context;
+		if(context instanceof XmlAttributeValue)
+		{
+			final XmlAttributeValue value = (XmlAttributeValue) context;
 
-			if (!(value.getParent() instanceof XmlAttribute))
+			if(!(value.getParent() instanceof XmlAttribute))
+			{
 				return; // not an XML attribute, probably an XML PI
+			}
 
 			XmlAttribute a = (XmlAttribute) value.getParent();
 			if(!a.getName().equals("style"))
+			{
 				return; // not a style attribute
+			}
 
 			Language language = Language.findLanguageByID("CSS");
-			if (language == null) return;
+			if(language == null)
+			{
+				return;
+			}
 
 			registrar.startInjecting(language);
-			registrar.addPlace("dummy_selector {","}",
-					(PsiLanguageInjectionHost)value,
-					TextRange.from(1, value.getTextLength() - 2));
+			registrar.addPlace("dummy_selector {", "}", (PsiLanguageInjectionHost) value, TextRange.from(1, value.getTextLength() - 2));
 			registrar.doneInjecting();
 			return;
 		}
 
 		// inject JavaScript to <script>
-		if (context instanceof XmlTag) {
-            /*
+		if(context instanceof XmlTag)
+		{
+			/*
                 IntelliJ reports an assertion error if the we didn't call any addPlace
                 between startInjecting/doneInjection, so we need to call them lazily.
              */
@@ -62,35 +68,39 @@ public class JellyLanguageInjector implements MultiHostInjector {
 
 			XmlTag t = (XmlTag) context;
 			if(!t.getName().equals("script"))
+			{
 				return; // not a script element
+			}
 
 			final Language language = Language.findLanguageByID("JavaScript");
-			if (language == null) return;
+			if(language == null)
+			{
+				return;
+			}
 
-			t.acceptChildren(new XmlElementVisitor() {
+			t.acceptChildren(new XmlElementVisitor()
+			{
 				@Override
-				public void visitXmlText(XmlText text) {
+				public void visitXmlText(XmlText text)
+				{
 					int len = text.getTextLength();
-					if (len==0) return;
+					if(len == 0)
+					{
+						return;
+					}
 
-					if(!started[0]) {
+					if(!started[0])
+					{
 						started[0] = true;
 						registrar.startInjecting(language);
 					}
-					registrar.addPlace(null,null,
-							(PsiLanguageInjectionHost)text,
-							TextRange.from(0, len));
+					registrar.addPlace(null, null, (PsiLanguageInjectionHost) text, TextRange.from(0, len));
 				}
 			});
 			if(started[0])
+			{
 				registrar.doneInjecting();
+			}
 		}
-    }
-
-	@NotNull
-    public List<? extends Class<? extends PsiElement>> elementsToInjectIn() {
-        return INJECTION_TARGET;
-    }
-
-    private static final List<Class<? extends XmlElement>> INJECTION_TARGET = Arrays.asList(XmlAttributeValue.class, XmlTag.class);
+	}
 }
