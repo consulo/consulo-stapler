@@ -3,6 +3,7 @@
 	<name>Stapler</name>
 	<version>SNAPSHOT</version>
 	<vendor url="http://www.kohsuke.org/" email="kk@kohsuke.org">Kohsuke Kawaguchi</vendor>
+	<depends config-file="maven.xml" optional="true">org.jetbrains.idea.maven</depends>
 
 	<actions>
 		<action id="GotoStaplerView" class="org.kohsuke.stapler.idea.GotoViewAction"
