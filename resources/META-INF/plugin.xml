@@ -3,7 +3,11 @@
 	<name>Stapler</name>
 	<version>SNAPSHOT</version>
 	<vendor url="http://www.kohsuke.org/" email="kk@kohsuke.org">Kohsuke Kawaguchi</vendor>
+
 	<depends config-file="maven.xml" optional="true">org.jetbrains.idea.maven</depends>
+	<depends>com.intellij.properties</depends>
+	<depends>com.intellij.xml</depends>
+	<depends>org.consulo.java</depends>
 
 	<actions>
 		<action id="GotoStaplerView" class="org.kohsuke.stapler.idea.GotoViewAction"
@@ -17,10 +21,7 @@
 		</action>
 	</actions>
 
-	<depends>com.intellij.properties</depends>
 
-	<depends>com.intellij.xml</depends>
-	<depends>org.consulo.java</depends>
 	<application-components>
 		<component>
 			<implementation-class>org.kohsuke.stapler.idea.StaplerApplicationComponent</implementation-class>
