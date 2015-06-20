@@ -1,7 +1,12 @@
 package org.kohsuke.stapler.idea.descriptor;
 
+import java.util.HashMap;
+import java.util.List;
+
+import org.jetbrains.annotations.Nullable;
+import org.kohsuke.stapler.idea.dom.model.AttributeTag;
+import org.kohsuke.stapler.idea.dom.model.DocumentationTag;
 import com.intellij.psi.PsiElement;
-import com.intellij.psi.PsiFile;
 import com.intellij.psi.util.PsiTreeUtil;
 import com.intellij.psi.xml.XmlDocument;
 import com.intellij.psi.xml.XmlElement;
@@ -11,12 +16,6 @@ import com.intellij.xml.XmlAttributeDescriptor;
 import com.intellij.xml.XmlElementDescriptor;
 import com.intellij.xml.XmlNSDescriptor;
 import com.intellij.xml.impl.dtd.BaseXmlElementDescriptorImpl;
-import org.jetbrains.annotations.Nullable;
-import org.kohsuke.stapler.idea.dom.model.AttributeTag;
-import org.kohsuke.stapler.idea.dom.model.DocumentationTag;
-
-import java.util.HashMap;
-import java.util.List;
 
 /**
  * @author Kohsuke Kawaguchi
@@ -48,11 +47,8 @@ public class XmlElementDescriptorImpl extends BaseXmlElementDescriptorImpl {
                 XmlElementDescriptor d = nsd.getElementDescriptor(child);
                 return d;
                 */
-                
-                PsiFile f = child.getContainingFile();
-                XmlNSDescriptor nsd = ((XmlFile)f).getDocument().getDefaultNSDescriptor(child.getNamespace(), false);
-                XmlElementDescriptor d = nsd.getElementDescriptor(child);
-                return d;
+
+                return super.getElementDescriptor(child, context);
             }
 
         } else
