@@ -11,11 +11,12 @@
 
 	<actions>
 		<action id="GotoStaplerView" class="org.kohsuke.stapler.idea.GotoViewAction"
-				text="Goto Stapler View" description="Jump from a Java class to its stapler views">
+				text="Goto Stapler View" description="Jump from a Java class to its stapler views" can-use-project-as-default="true" require-module-extensions="stapler">
 			<keyboard-shortcut keymap="$default" first-keystroke="ctrl shift P"/>
 			<add-to-group group-id="GoToCodeGroup" anchor="after" relative-to-action="GotoSuperMethod"/>
 		</action>
-		<action id="stapler-i18n" class="org.kohsuke.stapler.idea.I18nRefactorAction" text="i18n for stapler" description="i18n for stapler">
+		<action id="stapler-i18n" class="org.kohsuke.stapler.idea.I18nRefactorAction" text="i18n for stapler" description="i18n for stapler"
+				can-use-project-as-default="true" require-module-extensions="stapler">
 			<keyboard-shortcut keymap="$default" first-keystroke="ctrl alt I"/>
 			<add-to-group group-id="RefactoringMenu" anchor="after" relative-to-action="I18nize"/>
 		</action>
