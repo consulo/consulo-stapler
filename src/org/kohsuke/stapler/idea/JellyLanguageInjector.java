@@ -1,7 +1,7 @@
 package org.kohsuke.stapler.idea;
 
 import org.jetbrains.annotations.NotNull;
-import org.mustbe.consulo.stapler.JellyFileType;
+import consulo.stapler.JellyFileType;
 import com.intellij.lang.Language;
 import com.intellij.lang.injection.MultiHostInjector;
 import com.intellij.lang.injection.MultiHostRegistrar;

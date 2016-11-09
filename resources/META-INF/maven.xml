@@ -1,5 +1,5 @@
 <idea-plugin>
 	<extensions defaultExtensionNs="org.jetbrains.idea.maven">
-		<importer implementation="org.mustbe.consulo.stapler.maven.StaplerMavenImporter" />
+		<importer implementation="consulo.stapler.maven.StaplerMavenImporter" />
 	</extensions>
 </idea-plugin>

@@ -1,7 +1,7 @@
 package org.kohsuke.stapler.idea;
 
 import org.apache.commons.lang.ArrayUtils;
-import org.consulo.psi.PsiPackage;
+import consulo.psi.PsiPackage;
 import org.jetbrains.annotations.NotNull;
 import com.intellij.openapi.module.Module;
 import com.intellij.openapi.module.ModuleUtil;

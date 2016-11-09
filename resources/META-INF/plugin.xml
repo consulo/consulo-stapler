@@ -1,5 +1,5 @@
 <idea-plugin>
-	<id>org.mustbe.consulo.stapler</id>
+	<id>consulo.stapler</id>
 	<name>Stapler</name>
 	<version>SNAPSHOT</version>
 	<vendor url="http://www.kohsuke.org/" email="kk@kohsuke.org">Kohsuke Kawaguchi</vendor>
@@ -7,7 +7,7 @@
 	<depends config-file="maven.xml" optional="true">org.jetbrains.idea.maven</depends>
 	<depends>com.intellij.properties</depends>
 	<depends>com.intellij.xml</depends>
-	<depends>org.consulo.java</depends>
+	<depends>consulo.java</depends>
 
 	<actions>
 		<action id="GotoStaplerView" class="org.kohsuke.stapler.idea.GotoViewAction"
@@ -86,7 +86,7 @@
 
 		<xml.schemaProvider implementation="org.kohsuke.stapler.idea.descriptor.XmlSchemaProviderImpl"/>
 
-		<fileTypeFactory implementation="org.mustbe.consulo.stapler.StaplerFileTypeFactory"/>
+		<fileTypeFactory implementation="consulo.stapler.StaplerFileTypeFactory"/>
 
 		<multiHostInjector forClass="com.intellij.psi.xml.XmlAttributeValue" implementationClass="org.kohsuke.stapler.idea.JellyLanguageInjector"/>
 		<multiHostInjector forClass="com.intellij.psi.xml.XmlTag" implementationClass="org.kohsuke.stapler.idea.JellyLanguageInjector"/>
@@ -95,7 +95,7 @@
 								 parentKey="java"
 								 icon="/icons/stapler.png"
 								 name="Stapler"
-								 immutableClass="org.mustbe.consulo.stapler.module.extension.StaplerModuleExtension"
-								 mutableClass="org.mustbe.consulo.stapler.module.extension.StaplerMutableModuleExtension"/>
+								 immutableClass="consulo.stapler.module.extension.StaplerModuleExtension"
+								 mutableClass="consulo.stapler.module.extension.StaplerMutableModuleExtension"/>
 	</extensions>
 </idea-plugin>

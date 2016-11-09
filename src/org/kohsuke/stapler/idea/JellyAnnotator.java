@@ -1,6 +1,6 @@
 package org.kohsuke.stapler.idea;
 
-import org.mustbe.consulo.stapler.JellyFileType;
+import consulo.stapler.JellyFileType;
 import com.intellij.lang.annotation.AnnotationHolder;
 import com.intellij.lang.annotation.Annotator;
 import com.intellij.psi.PsiElement;

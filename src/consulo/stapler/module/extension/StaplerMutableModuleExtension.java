@@ -1,12 +1,8 @@
-package org.mustbe.consulo.stapler.module.extension;
+package consulo.stapler.module.extension;
 
-import javax.swing.JComponent;
-
-import org.consulo.module.extension.MutableModuleExtension;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
-import org.mustbe.consulo.RequiredDispatchThread;
-import com.intellij.openapi.roots.ModuleRootLayer;
+import consulo.module.extension.MutableModuleExtension;
+import consulo.roots.ModuleRootLayer;
 
 /**
  * @author VISTALL
@@ -17,14 +13,6 @@ public class StaplerMutableModuleExtension extends StaplerModuleExtension implem
 	public StaplerMutableModuleExtension(@NotNull String id, @NotNull ModuleRootLayer moduleRootLayer)
 	{
 		super(id, moduleRootLayer);
-	}
-
-	@RequiredDispatchThread
-	@Nullable
-	@Override
-	public JComponent createConfigurablePanel(@NotNull Runnable updateOnCheck)
-	{
-		return null;
 	}
 
 	@Override

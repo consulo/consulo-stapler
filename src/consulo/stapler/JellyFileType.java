@@ -1,4 +1,4 @@
-package org.mustbe.consulo.stapler;
+package consulo.stapler;
 
 import javax.swing.Icon;
 

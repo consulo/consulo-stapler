@@ -1,4 +1,4 @@
-package org.mustbe.consulo.stapler;
+package consulo.stapler;
 
 import org.jetbrains.annotations.NotNull;
 import com.intellij.openapi.fileTypes.FileTypeConsumer;

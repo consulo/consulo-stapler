@@ -1,17 +1,17 @@
-package org.mustbe.consulo.stapler.maven;
+package consulo.stapler.maven;
 
 import java.util.List;
 import java.util.Map;
 
-import org.jetbrains.idea.maven.importing.MavenImporterFromBuildPlugin;
 import org.jetbrains.idea.maven.importing.MavenModifiableModelsProvider;
 import org.jetbrains.idea.maven.importing.MavenRootModelAdapter;
 import org.jetbrains.idea.maven.project.MavenProject;
 import org.jetbrains.idea.maven.project.MavenProjectChanges;
 import org.jetbrains.idea.maven.project.MavenProjectsProcessorTask;
 import org.jetbrains.idea.maven.project.MavenProjectsTree;
-import org.mustbe.consulo.stapler.module.extension.StaplerModuleExtension;
 import com.intellij.openapi.module.Module;
+import consulo.maven.importing.MavenImporterFromBuildPlugin;
+import consulo.stapler.module.extension.StaplerModuleExtension;
 
 /**
  * @author VISTALL

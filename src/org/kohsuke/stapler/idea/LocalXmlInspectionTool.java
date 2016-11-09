@@ -2,8 +2,8 @@ package org.kohsuke.stapler.idea;
 
 import org.jetbrains.annotations.NonNls;
 import org.jetbrains.annotations.NotNull;
-import org.mustbe.consulo.RequiredReadAction;
-import org.mustbe.consulo.stapler.module.extension.StaplerModuleExtension;
+import consulo.annotations.RequiredReadAction;
+import consulo.stapler.module.extension.StaplerModuleExtension;
 import com.intellij.codeInspection.InspectionManager;
 import com.intellij.codeInspection.LocalInspectionTool;
 import com.intellij.codeInspection.ProblemDescriptor;
