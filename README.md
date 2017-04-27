@@ -1,0 +1,1 @@
+[![Build Status](https://ci.consulo.io/job/consulo-stapler/badge/icon)](https://ci.consulo.io/job/consulo-stapler)
