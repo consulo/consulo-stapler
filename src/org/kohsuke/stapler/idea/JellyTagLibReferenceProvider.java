@@ -1,7 +1,5 @@
 package org.kohsuke.stapler.idea;
 
-import org.apache.commons.lang.ArrayUtils;
-import consulo.psi.PsiPackage;
 import org.jetbrains.annotations.NotNull;
 import com.intellij.openapi.module.Module;
 import com.intellij.openapi.module.ModuleUtil;
@@ -12,6 +10,7 @@ import com.intellij.psi.xml.XmlAttribute;
 import com.intellij.psi.xml.XmlAttributeValue;
 import com.intellij.psi.xml.XmlTag;
 import com.intellij.util.ProcessingContext;
+import consulo.psi.PsiPackage;
 
 /**
  * Let IDEA know what some of the attribute values are referring to.
@@ -126,10 +125,6 @@ public class JellyTagLibReferenceProvider extends PsiReferenceProvider {
                         }
                         return null;
                     }
-                }
-
-                public Object[] getVariants() {
-                    return ArrayUtils.EMPTY_OBJECT_ARRAY;
                 }
             });
         }

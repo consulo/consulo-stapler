@@ -5,7 +5,6 @@ import java.util.List;
 
 import javax.swing.ListCellRenderer;
 
-import org.apache.commons.lang.ArrayUtils;
 import org.jetbrains.annotations.NotNull;
 import com.intellij.ide.actions.GotoActionBase;
 import com.intellij.ide.util.DefaultPsiElementCellRenderer;
@@ -29,6 +28,7 @@ import com.intellij.psi.PsiJavaFile;
 import com.intellij.psi.PsiJavaPackage;
 import com.intellij.psi.util.PsiTreeUtil;
 import com.intellij.psi.util.PsiUtilBase;
+import com.intellij.util.ArrayUtil;
 
 /**
  * Select stapler views from a Java class.
@@ -134,7 +134,7 @@ public class GotoViewAction extends GotoActionBase {
 
             @NotNull
             public String[] getSeparators() {
-                return ArrayUtils.EMPTY_STRING_ARRAY;
+                return ArrayUtil.EMPTY_STRING_ARRAY;
             }
 
             public String getElementName(Object obj) {
