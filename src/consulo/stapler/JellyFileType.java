@@ -1,13 +1,12 @@
 package consulo.stapler;
 
-import javax.swing.Icon;
-
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import com.intellij.icons.AllIcons;
 import com.intellij.ide.highlighter.XmlLikeFileType;
 import com.intellij.lang.xml.XMLLanguage;
 import com.intellij.openapi.fileTypes.FileType;
+import consulo.ui.image.Image;
 
 /**
  * @author VISTALL
@@ -24,7 +23,7 @@ public class JellyFileType extends XmlLikeFileType
 
 	@NotNull
 	@Override
-	public String getName()
+	public String getId()
 	{
 		return "JELLY";
 	}
@@ -45,7 +44,7 @@ public class JellyFileType extends XmlLikeFileType
 
 	@Nullable
 	@Override
-	public Icon getIcon()
+	public Image getIcon()
 	{
 		return AllIcons.FileTypes.Xml;
 	}
