@@ -91,6 +91,8 @@
 		<multiHostInjector forClass="com.intellij.psi.xml.XmlAttributeValue" implementationClass="org.kohsuke.stapler.idea.JellyLanguageInjector"/>
 		<multiHostInjector forClass="com.intellij.psi.xml.XmlTag" implementationClass="org.kohsuke.stapler.idea.JellyLanguageInjector"/>
 
+		<inspectionToolProvider implementation="consulo.stapler.StaplerInspectionToolProvider" />
+
 		<moduleExtensionProvider key="stapler"
 								 parentKey="java"
 								 icon="/icons/stapler.png"
