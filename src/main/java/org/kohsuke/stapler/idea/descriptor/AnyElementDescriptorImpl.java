@@ -8,7 +8,7 @@ import com.intellij.xml.impl.schema.AnyXmlAttributeDescriptor;
 import com.intellij.psi.xml.XmlTag;
 import com.intellij.psi.xml.XmlAttribute;
 import com.intellij.psi.PsiElement;
-import org.jetbrains.annotations.Nullable;
+import javax.annotation.Nullable;
 import org.jetbrains.annotations.NonNls;
 
 /**

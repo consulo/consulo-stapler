@@ -3,8 +3,8 @@ package org.kohsuke.stapler.idea.descriptor;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import com.intellij.openapi.module.Module;
 import com.intellij.openapi.module.ModuleUtil;
 import com.intellij.psi.JavaPsiFacade;
@@ -50,7 +50,7 @@ public class XmlNSDescriptorImpl implements XmlNSDescriptor {
         return dir;
     }
 
-    public XmlElementDescriptor getElementDescriptor(@NotNull XmlTag tag) {
+    public XmlElementDescriptor getElementDescriptor(@Nonnull XmlTag tag) {
         PsiFile f = dir.findFile(tag.getLocalName() + ".jelly");
         if (f instanceof XmlFile)
             return new XmlElementDescriptorImpl(this, (XmlFile)f);
@@ -64,7 +64,7 @@ public class XmlNSDescriptorImpl implements XmlNSDescriptor {
      * This appears to be used for code completion. When I returned
      * an empty array, the code completion didn't show me anything. 
      */
-    @NotNull
+    @Nonnull
     public XmlElementDescriptor[] getRootElementsDescriptors(@Nullable XmlDocument document) {
         List<XmlElementDescriptor> r = new ArrayList<XmlElementDescriptor>();
         for(PsiFile f : dir.getFiles()) {

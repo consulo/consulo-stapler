@@ -1,6 +1,7 @@
 package org.kohsuke.stapler.idea;
 
-import org.jetbrains.annotations.NotNull;
+import javax.annotation.Nonnull;
+
 import com.intellij.openapi.module.Module;
 import com.intellij.openapi.module.ModuleUtil;
 import com.intellij.openapi.util.TextRange;
@@ -25,8 +26,8 @@ public class JellyTagLibReferenceProvider extends PsiReferenceProvider {
         The basic idea of ReferenceProvider is to create a reference speculatively,
         then the reference object will later try to find the target.
      */
-    @NotNull
-    public PsiReference[] getReferencesByElement(@NotNull PsiElement e, @NotNull ProcessingContext processingContext) {
+    @Nonnull
+    public PsiReference[] getReferencesByElement(@Nonnull PsiElement e, @Nonnull ProcessingContext processingContext) {
         /*
         This was the old way of marking references to tag files, but
         with the custom XmlNSDescriptor this is no longer necessary

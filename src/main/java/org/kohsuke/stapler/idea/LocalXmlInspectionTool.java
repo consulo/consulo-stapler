@@ -1,7 +1,8 @@
 package org.kohsuke.stapler.idea;
 
+import javax.annotation.Nonnull;
+
 import org.jetbrains.annotations.NonNls;
-import org.jetbrains.annotations.NotNull;
 import consulo.annotations.RequiredReadAction;
 import consulo.stapler.module.extension.StaplerModuleExtension;
 import com.intellij.codeInspection.InspectionManager;
@@ -27,13 +28,13 @@ public abstract class LocalXmlInspectionTool extends LocalInspectionTool
 	 * which is when the stapler facet is configured on the current module.
 	 */
 	@RequiredReadAction
-	protected static boolean shouldCheck(@NotNull PsiElement psiElement)
+	protected static boolean shouldCheck(@Nonnull PsiElement psiElement)
 	{
 		return ModuleUtilCore.getExtension(psiElement, StaplerModuleExtension.class) != null;
 	}
 
 	@NonNls
-	@NotNull
+	@Nonnull
 	public String getShortName()
 	{
 		return getClass().getSimpleName();
@@ -45,8 +46,8 @@ public abstract class LocalXmlInspectionTool extends LocalInspectionTool
 		return true;
 	}
 
-	@NotNull
-	public PsiElementVisitor buildVisitor(@NotNull final ProblemsHolder holder, final boolean isOnTheFly)
+	@Nonnull
+	public PsiElementVisitor buildVisitor(@Nonnull final ProblemsHolder holder, final boolean isOnTheFly)
 	{
 		return new XmlElementVisitor()
 		{

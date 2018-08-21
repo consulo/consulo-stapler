@@ -3,9 +3,9 @@ package org.kohsuke.stapler.idea;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.Nonnull;
 import javax.swing.ListCellRenderer;
 
-import org.jetbrains.annotations.NotNull;
 import com.intellij.ide.actions.GotoActionBase;
 import com.intellij.ide.util.DefaultPsiElementCellRenderer;
 import com.intellij.ide.util.gotoByName.ChooseByNameModel;
@@ -132,7 +132,7 @@ public class GotoViewAction extends GotoActionBase {
                 return EMPTY_ARRAY;
             }
 
-            @NotNull
+            @Nonnull
             public String[] getSeparators() {
                 return ArrayUtil.EMPTY_STRING_ARRAY;
             }

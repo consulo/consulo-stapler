@@ -1,14 +1,11 @@
 package org.kohsuke.stapler.idea.dom.model;
 
-import com.intellij.util.xml.DomElement;
-import com.intellij.util.xml.Implementation;
 import com.intellij.psi.xml.XmlTag;
-import com.intellij.psi.xml.XmlTagChild;
 
 import java.util.List;
 import java.util.ArrayList;
 
-import org.jetbrains.annotations.NotNull;
+import javax.annotation.Nonnull;
 
 /**
  * Wraps {@link XmlTag} for &lt;st:documentation> element.
@@ -16,7 +13,7 @@ import org.jetbrains.annotations.NotNull;
  * @author Kohsuke Kawaguchi
  */
 public final class DocumentationTag extends TagWithHtmlContent {
-    public DocumentationTag(@NotNull XmlTag tag) {
+    public DocumentationTag(@Nonnull XmlTag tag) {
         super(tag);
     }
 

@@ -1,6 +1,6 @@
 package org.kohsuke.stapler.idea;
 
-import org.jetbrains.annotations.NotNull;
+import javax.annotation.Nonnull;
 import org.kohsuke.stapler.idea.descriptor.XmlNSDescriptorImpl;
 import com.intellij.codeInsight.TailType;
 import com.intellij.codeInsight.completion.CompletionContributor;
@@ -73,7 +73,7 @@ public class JellyCompletionContributor extends CompletionContributor
 				XML_ELEMENT_NAME_PATTERN, new CompletionProvider()
 		{
 			// REFERENCE: spring plugin adds CompletionContributor as well.
-			public void addCompletions(@NotNull CompletionParameters parameters, ProcessingContext context, @NotNull CompletionResultSet result)
+			public void addCompletions(@Nonnull CompletionParameters parameters, ProcessingContext context, @Nonnull CompletionResultSet result)
 			{
 				XmlElement name = (XmlElement) parameters.getPosition();
 

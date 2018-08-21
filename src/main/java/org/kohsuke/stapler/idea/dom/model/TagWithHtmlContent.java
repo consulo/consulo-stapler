@@ -2,7 +2,7 @@ package org.kohsuke.stapler.idea.dom.model;
 
 import com.intellij.psi.xml.XmlTag;
 import com.intellij.psi.xml.XmlTagChild;
-import org.jetbrains.annotations.NotNull;
+import javax.annotation.Nonnull;
 import net.java.textilej.parser.MarkupParser;
 import net.java.textilej.parser.builder.HtmlDocumentBuilder;
 import net.java.textilej.parser.markup.confluence.ConfluenceDialect;
@@ -15,7 +15,7 @@ import java.io.StringWriter;
 public abstract class TagWithHtmlContent {
     public final XmlTag tag;
 
-    TagWithHtmlContent(@NotNull XmlTag tag) {
+    TagWithHtmlContent(@Nonnull XmlTag tag) {
         this.tag = tag;
     }
 

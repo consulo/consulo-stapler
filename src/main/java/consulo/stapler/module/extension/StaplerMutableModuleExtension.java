@@ -1,6 +1,7 @@
 package consulo.stapler.module.extension;
 
-import org.jetbrains.annotations.NotNull;
+import javax.annotation.Nonnull;
+
 import consulo.module.extension.MutableModuleExtension;
 import consulo.roots.ModuleRootLayer;
 
@@ -10,7 +11,7 @@ import consulo.roots.ModuleRootLayer;
  */
 public class StaplerMutableModuleExtension extends StaplerModuleExtension implements MutableModuleExtension<StaplerModuleExtension>
 {
-	public StaplerMutableModuleExtension(@NotNull String id, @NotNull ModuleRootLayer moduleRootLayer)
+	public StaplerMutableModuleExtension(@Nonnull String id, @Nonnull ModuleRootLayer moduleRootLayer)
 	{
 		super(id, moduleRootLayer);
 	}
@@ -22,7 +23,7 @@ public class StaplerMutableModuleExtension extends StaplerModuleExtension implem
 	}
 
 	@Override
-	public boolean isModified(@NotNull StaplerModuleExtension originalExtension)
+	public boolean isModified(@Nonnull StaplerModuleExtension originalExtension)
 	{
 		return myIsEnabled != originalExtension.isEnabled();
 	}

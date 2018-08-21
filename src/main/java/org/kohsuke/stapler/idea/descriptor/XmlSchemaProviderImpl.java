@@ -2,18 +2,16 @@ package org.kohsuke.stapler.idea.descriptor;
 
 import com.intellij.openapi.module.Module;
 import com.intellij.openapi.util.Key;
-import com.intellij.openapi.project.Project;
 import com.intellij.psi.PsiFile;
 import com.intellij.psi.PsiFileFactory;
 import com.intellij.psi.PsiDirectory;
 import com.intellij.psi.xml.XmlFile;
 import com.intellij.xml.XmlNSDescriptor;
 import com.intellij.xml.XmlSchemaProvider;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
-import org.kohsuke.stapler.idea.StaplerApplicationComponent;
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
-import java.util.Set;
+import org.kohsuke.stapler.idea.StaplerApplicationComponent;
 
 /**
  *
@@ -25,7 +23,7 @@ import java.util.Set;
  * @author Kohsuke Kawaguchi
  */
 public class XmlSchemaProviderImpl extends XmlSchemaProvider {
-    public XmlFile getSchema(@NotNull String url, @Nullable Module module, @NotNull PsiFile baseFile) {
+    public XmlFile getSchema(@Nonnull String url, @Nullable Module module, @Nonnull PsiFile baseFile) {
         XmlNSDescriptorImpl d = XmlNSDescriptorImpl.get(url, module);
         if(d==null)     return null;
 
@@ -45,7 +43,7 @@ public class XmlSchemaProviderImpl extends XmlSchemaProvider {
      * so check that.
      */
     @Override
-    public boolean isAvailable(@NotNull XmlFile file) {
+    public boolean isAvailable(@Nonnull XmlFile file) {
         return file.getName().endsWith(".jelly");
     }
 

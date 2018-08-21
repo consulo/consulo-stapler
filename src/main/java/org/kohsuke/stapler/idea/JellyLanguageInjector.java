@@ -1,6 +1,7 @@
 package org.kohsuke.stapler.idea;
 
-import org.jetbrains.annotations.NotNull;
+import javax.annotation.Nonnull;
+
 import consulo.stapler.JellyFileType;
 import com.intellij.lang.Language;
 import com.intellij.lang.injection.MultiHostInjector;
@@ -22,7 +23,7 @@ import com.intellij.psi.xml.XmlText;
 public class JellyLanguageInjector implements MultiHostInjector
 {
 	@Override
-	public void injectLanguages(@NotNull final MultiHostRegistrar registrar, @NotNull PsiElement context)
+	public void injectLanguages(@Nonnull final MultiHostRegistrar registrar, @Nonnull PsiElement context)
 	{
 		if(context.getContainingFile().getFileType() != JellyFileType.INSTANCE)
 		{

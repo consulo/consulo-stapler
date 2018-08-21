@@ -7,19 +7,19 @@ import com.intellij.codeInspection.ProblemDescriptor;
 import com.intellij.codeInspection.ProblemHighlightType;
 import com.intellij.psi.xml.XmlText;
 import org.jetbrains.annotations.Nls;
-import org.jetbrains.annotations.NotNull;
+import javax.annotation.Nonnull;
 
 /**
  * @author Kohsuke Kawaguchi
  */
 public class I18nInspection extends LocalXmlInspectionTool {
-    @Nls @NotNull
+    @Nls @Nonnull
     public String getGroupDisplayName() {
         return GroupNames.BUGS_GROUP_NAME;
     }
 
     @Nls
-    @NotNull
+    @Nonnull
     public String getDisplayName() {
         return "Tests something";
     }

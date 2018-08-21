@@ -3,7 +3,7 @@ package org.kohsuke.stapler.idea.descriptor;
 import java.util.HashMap;
 import java.util.List;
 
-import org.jetbrains.annotations.Nullable;
+import javax.annotation.Nullable;
 import org.kohsuke.stapler.idea.dom.model.AttributeTag;
 import org.kohsuke.stapler.idea.dom.model.DocumentationTag;
 import com.intellij.psi.PsiElement;

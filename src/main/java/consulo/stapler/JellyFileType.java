@@ -1,7 +1,8 @@
 package consulo.stapler;
 
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+
 import com.intellij.icons.AllIcons;
 import com.intellij.ide.highlighter.XmlLikeFileType;
 import com.intellij.lang.xml.XMLLanguage;
@@ -21,21 +22,21 @@ public class JellyFileType extends XmlLikeFileType
 		super(XMLLanguage.INSTANCE);
 	}
 
-	@NotNull
+	@Nonnull
 	@Override
 	public String getId()
 	{
 		return "JELLY";
 	}
 
-	@NotNull
+	@Nonnull
 	@Override
 	public String getDescription()
 	{
 		return "*.jelly xml file";
 	}
 
-	@NotNull
+	@Nonnull
 	@Override
 	public String getDefaultExtension()
 	{

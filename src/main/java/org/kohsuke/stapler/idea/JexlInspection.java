@@ -3,7 +3,7 @@ package org.kohsuke.stapler.idea;
 import org.apache.commons.jexl.ExpressionFactory;
 import org.apache.commons.jexl.parser.ParseException;
 import org.jetbrains.annotations.Nls;
-import org.jetbrains.annotations.NotNull;
+import javax.annotation.Nonnull;
 import com.intellij.codeHighlighting.HighlightDisplayLevel;
 import com.intellij.codeInsight.daemon.GroupNames;
 import com.intellij.codeInspection.InspectionManager;
@@ -21,17 +21,17 @@ import consulo.annotations.RequiredReadAction;
  * @author Kohsuke Kawaguchi
  */
 public class JexlInspection extends LocalXmlInspectionTool {
-    @Nls @NotNull
+    @Nls @Nonnull
     public String getGroupDisplayName() {
         return GroupNames.BUGS_GROUP_NAME;
     }
 
-    @Nls @NotNull
+    @Nls @Nonnull
     public String getDisplayName() {
         return "Checks syntax of JEXL expressions";
     }
 
-    @NotNull
+    @Nonnull
     public HighlightDisplayLevel getDefaultLevel() {
         return HighlightDisplayLevel.ERROR;
     }

@@ -1,7 +1,8 @@
 package consulo.stapler.module.extension;
 
-import org.jetbrains.annotations.NotNull;
-import consulo.extension.impl.ModuleExtensionImpl;
+import javax.annotation.Nonnull;
+
+import consulo.module.extension.impl.ModuleExtensionImpl;
 import consulo.roots.ModuleRootLayer;
 
 /**
@@ -10,7 +11,7 @@ import consulo.roots.ModuleRootLayer;
  */
 public class StaplerModuleExtension extends ModuleExtensionImpl<StaplerModuleExtension>
 {
-	public StaplerModuleExtension(@NotNull String id, @NotNull ModuleRootLayer moduleRootLayer)
+	public StaplerModuleExtension(@Nonnull String id, @Nonnull ModuleRootLayer moduleRootLayer)
 	{
 		super(id, moduleRootLayer);
 	}
