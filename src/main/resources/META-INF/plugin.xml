@@ -22,14 +22,6 @@
 		</action>
 	</actions>
 
-
-	<application-components>
-		<component>
-			<implementation-class>org.kohsuke.stapler.idea.StaplerApplicationComponent</implementation-class>
-		</component>
-	</application-components>
-
-
 	<extensions defaultExtensionNs="com.intellij.xml">
 		<standardResource url="jelly:ant" path="/standardSchemas/ant.xsd"/>
 		<standardResource url="jelly:antlr" path="/standardSchemas/antlr.xsd"/>
@@ -99,5 +91,7 @@
 								 name="Stapler"
 								 immutableClass="consulo.stapler.module.extension.StaplerModuleExtension"
 								 mutableClass="consulo.stapler.module.extension.StaplerMutableModuleExtension"/>
+
+		<applicationService serviceImplementation="org.kohsuke.stapler.idea.StaplerApplicationComponent" lazy="false" />
 	</extensions>
 </idea-plugin>
