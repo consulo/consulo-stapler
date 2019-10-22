@@ -1,4 +1,4 @@
-<idea-plugin>
+<consulo-plugin>
 	<id>consulo.stapler</id>
 	<name>Stapler</name>
 	<version>SNAPSHOT</version>
@@ -94,4 +94,4 @@
 
 		<applicationService serviceImplementation="org.kohsuke.stapler.idea.StaplerApplicationComponent" lazy="false" />
 	</extensions>
-</idea-plugin>
+</consulo-plugin>
