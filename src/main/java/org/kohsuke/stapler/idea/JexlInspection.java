@@ -1,9 +1,5 @@
 package org.kohsuke.stapler.idea;
 
-import org.apache.commons.jexl.ExpressionFactory;
-import org.apache.commons.jexl.parser.ParseException;
-import org.jetbrains.annotations.Nls;
-import javax.annotation.Nonnull;
 import com.intellij.codeHighlighting.HighlightDisplayLevel;
 import com.intellij.codeInsight.daemon.GroupNames;
 import com.intellij.codeInspection.InspectionManager;
@@ -15,7 +11,12 @@ import com.intellij.openapi.util.UnfairTextRange;
 import com.intellij.psi.xml.XmlAttributeValue;
 import com.intellij.psi.xml.XmlElement;
 import com.intellij.psi.xml.XmlText;
-import consulo.annotations.RequiredReadAction;
+import consulo.annotation.access.RequiredReadAction;
+import org.apache.commons.jexl.ExpressionFactory;
+import org.apache.commons.jexl.parser.ParseException;
+import org.jetbrains.annotations.Nls;
+
+import javax.annotation.Nonnull;
 
 /**
  * @author Kohsuke Kawaguchi

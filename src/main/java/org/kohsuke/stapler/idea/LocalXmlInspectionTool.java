@@ -1,10 +1,5 @@
 package org.kohsuke.stapler.idea;
 
-import javax.annotation.Nonnull;
-
-import org.jetbrains.annotations.NonNls;
-import consulo.annotations.RequiredReadAction;
-import consulo.stapler.module.extension.StaplerModuleExtension;
 import com.intellij.codeInspection.InspectionManager;
 import com.intellij.codeInspection.LocalInspectionTool;
 import com.intellij.codeInspection.ProblemDescriptor;
@@ -15,6 +10,11 @@ import com.intellij.psi.PsiElementVisitor;
 import com.intellij.psi.XmlElementVisitor;
 import com.intellij.psi.xml.XmlAttributeValue;
 import com.intellij.psi.xml.XmlText;
+import consulo.annotation.access.RequiredReadAction;
+import consulo.stapler.module.extension.StaplerModuleExtension;
+import org.jetbrains.annotations.NonNls;
+
+import javax.annotation.Nonnull;
 
 /**
  * {@link LocalInspectionTool} with enhancements to handle XML files.
