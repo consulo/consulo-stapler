@@ -1,17 +1,17 @@
 package org.kohsuke.stapler.idea.descriptor;
 
 import com.intellij.openapi.module.Module;
-import com.intellij.openapi.util.Key;
+import com.intellij.psi.PsiDirectory;
 import com.intellij.psi.PsiFile;
 import com.intellij.psi.PsiFileFactory;
-import com.intellij.psi.PsiDirectory;
 import com.intellij.psi.xml.XmlFile;
 import com.intellij.xml.XmlNSDescriptor;
 import com.intellij.xml.XmlSchemaProvider;
+import consulo.util.dataholder.Key;
+import org.kohsuke.stapler.idea.StaplerApplicationComponent;
+
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-
-import org.kohsuke.stapler.idea.StaplerApplicationComponent;
 
 /**
  *
