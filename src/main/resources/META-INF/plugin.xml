@@ -9,6 +9,11 @@
 	<depends>com.intellij.xml</depends>
 	<depends>consulo.java</depends>
 
+	<tags>
+		<tag>ui.framework</tag>
+		<tag>web.framework</tag>
+	</tags>
+
 	<actions>
 		<action id="GotoStaplerView" class="org.kohsuke.stapler.idea.GotoViewAction"
 				text="Goto Stapler View" description="Jump from a Java class to its stapler views" can-use-project-as-default="true" require-module-extensions="stapler">
