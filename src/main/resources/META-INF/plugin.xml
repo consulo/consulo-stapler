@@ -1,4 +1,4 @@
-<consulo-plugin>
+<consulo-plugin url="https://github.com/consulo/consulo-stapler">
 	<id>consulo.stapler</id>
 	<name>Stapler</name>
 	<version>SNAPSHOT</version>
