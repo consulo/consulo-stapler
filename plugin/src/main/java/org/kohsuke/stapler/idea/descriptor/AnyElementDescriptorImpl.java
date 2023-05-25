@@ -1,15 +1,16 @@
 package org.kohsuke.stapler.idea.descriptor;
 
-import com.intellij.xml.XmlElementDescriptor;
 import com.intellij.xml.XmlAttributeDescriptor;
+import com.intellij.xml.XmlElementDescriptor;
 import com.intellij.xml.XmlElementsGroup;
 import com.intellij.xml.XmlNSDescriptor;
 import com.intellij.xml.impl.schema.AnyXmlAttributeDescriptor;
-import com.intellij.psi.xml.XmlTag;
-import com.intellij.psi.xml.XmlAttribute;
-import com.intellij.psi.PsiElement;
-import javax.annotation.Nullable;
+import consulo.language.psi.PsiElement;
+import consulo.xml.psi.xml.XmlAttribute;
+import consulo.xml.psi.xml.XmlTag;
 import org.jetbrains.annotations.NonNls;
+
+import javax.annotation.Nullable;
 
 /**
  * @author Kohsuke Kawaguchi

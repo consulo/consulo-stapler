@@ -1,12 +1,12 @@
 package org.kohsuke.stapler.idea.dom.model;
 
-import com.intellij.psi.xml.XmlTag;
-import com.intellij.psi.xml.XmlTagChild;
-import javax.annotation.Nonnull;
+import consulo.xml.psi.xml.XmlTag;
+import consulo.xml.psi.xml.XmlTagChild;
 import net.java.textilej.parser.MarkupParser;
 import net.java.textilej.parser.builder.HtmlDocumentBuilder;
 import net.java.textilej.parser.markup.confluence.ConfluenceDialect;
 
+import javax.annotation.Nonnull;
 import java.io.StringWriter;
 
 /**

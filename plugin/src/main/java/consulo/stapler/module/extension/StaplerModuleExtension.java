@@ -1,15 +1,15 @@
 package consulo.stapler.module.extension;
 
-import javax.annotation.Nonnull;
+import consulo.module.content.layer.ModuleRootLayer;
+import consulo.module.content.layer.extension.ModuleExtensionBase;
 
-import consulo.module.extension.impl.ModuleExtensionImpl;
-import consulo.roots.ModuleRootLayer;
+import javax.annotation.Nonnull;
 
 /**
  * @author VISTALL
  * @since 16.06.2015
  */
-public class StaplerModuleExtension extends ModuleExtensionImpl<StaplerModuleExtension>
+public class StaplerModuleExtension extends ModuleExtensionBase<StaplerModuleExtension>
 {
 	public StaplerModuleExtension(@Nonnull String id, @Nonnull ModuleRootLayer moduleRootLayer)
 	{

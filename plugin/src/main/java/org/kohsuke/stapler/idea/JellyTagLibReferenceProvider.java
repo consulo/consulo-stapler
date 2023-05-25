@@ -1,17 +1,20 @@
 package org.kohsuke.stapler.idea;
 
-import javax.annotation.Nonnull;
+import com.intellij.java.language.psi.JavaDirectoryService;
+import com.intellij.java.language.psi.JavaPsiFacade;
+import com.intellij.java.language.psi.PsiClass;
+import com.intellij.java.language.psi.PsiJavaPackage;
+import consulo.document.util.TextRange;
+import consulo.language.psi.*;
+import consulo.language.psi.scope.GlobalSearchScope;
+import consulo.language.util.ModuleUtilCore;
+import consulo.language.util.ProcessingContext;
+import consulo.module.Module;
+import consulo.xml.psi.xml.XmlAttribute;
+import consulo.xml.psi.xml.XmlAttributeValue;
+import consulo.xml.psi.xml.XmlTag;
 
-import com.intellij.openapi.module.Module;
-import com.intellij.openapi.module.ModuleUtil;
-import com.intellij.openapi.util.TextRange;
-import com.intellij.psi.*;
-import com.intellij.psi.search.GlobalSearchScope;
-import com.intellij.psi.xml.XmlAttribute;
-import com.intellij.psi.xml.XmlAttributeValue;
-import com.intellij.psi.xml.XmlTag;
-import com.intellij.util.ProcessingContext;
-import consulo.psi.PsiPackage;
+import javax.annotation.Nonnull;
 
 /**
  * Let IDEA know what some of the attribute values are referring to.
@@ -21,7 +24,8 @@ import consulo.psi.PsiPackage;
  *
  * @author Kohsuke Kawaguchi
  */
-public class JellyTagLibReferenceProvider extends PsiReferenceProvider {
+public class JellyTagLibReferenceProvider extends PsiReferenceProvider
+{
     /*
         The basic idea of ReferenceProvider is to create a reference speculatively,
         then the reference object will later try to find the target.
@@ -110,7 +114,7 @@ public class JellyTagLibReferenceProvider extends PsiReferenceProvider {
                         PsiPackage pkg = jds.getPackage(p);
                         if(pkg==null)   return null;
 
-                        Module m = ModuleUtil.findModuleForFile(f.getVirtualFile(), f.getProject());
+                        Module m = ModuleUtilCore.findModuleForFile(f.getVirtualFile(), f.getProject());
                         if(m==null)     return null;
                         PsiClass c = javaFacade.findClass(pkg.getQualifiedName(), GlobalSearchScope.moduleWithDependenciesAndLibrariesScope(m));
                         if(c==null)     return null;

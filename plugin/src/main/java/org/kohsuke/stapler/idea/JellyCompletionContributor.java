@@ -1,27 +1,25 @@
 package org.kohsuke.stapler.idea;
 
-import javax.annotation.Nonnull;
-import org.kohsuke.stapler.idea.descriptor.XmlNSDescriptorImpl;
-import com.intellij.codeInsight.TailType;
-import com.intellij.codeInsight.completion.CompletionContributor;
-import com.intellij.codeInsight.completion.CompletionParameters;
-import com.intellij.codeInsight.completion.CompletionResultSet;
-import com.intellij.codeInsight.completion.CompletionType;
-import com.intellij.codeInsight.lookup.LookupItem;
-import com.intellij.openapi.module.Module;
-import com.intellij.openapi.module.ModuleUtil;
-import com.intellij.patterns.ElementPattern;
-import com.intellij.patterns.XmlElementPattern;
-import com.intellij.psi.impl.source.xml.TagNameReference;
-import com.intellij.psi.xml.XmlAttribute;
-import com.intellij.psi.xml.XmlDocument;
-import com.intellij.psi.xml.XmlElement;
-import com.intellij.psi.xml.XmlTag;
-import com.intellij.psi.xml.XmlToken;
-import com.intellij.util.ProcessingContext;
 import com.intellij.xml.XmlElementDescriptor;
-import consulo.codeInsight.completion.CompletionProvider;
+import consulo.annotation.component.ExtensionImpl;
+import consulo.language.Language;
+import consulo.language.editor.completion.*;
+import consulo.language.editor.completion.lookup.LookupItem;
+import consulo.language.editor.completion.lookup.TailType;
+import consulo.language.pattern.ElementPattern;
+import consulo.language.util.ModuleUtilCore;
+import consulo.language.util.ProcessingContext;
+import consulo.module.Module;
 import consulo.stapler.JellyFileType;
+import consulo.xml.lang.xml.XMLLanguage;
+import consulo.xml.patterns.XmlElementPattern;
+import consulo.xml.psi.xml.XmlAttribute;
+import consulo.xml.psi.xml.XmlElement;
+import consulo.xml.psi.xml.XmlTag;
+import consulo.xml.psi.xml.XmlToken;
+import org.kohsuke.stapler.idea.descriptor.XmlNSDescriptorImpl;
+
+import javax.annotation.Nonnull;
 
 /**
  * Tag name completion for Jelly tag libraries defined as tag files.
@@ -65,6 +63,7 @@ import consulo.stapler.JellyFileType;
  *
  * @author Kohsuke Kawaguchi
  */
+@ExtensionImpl
 public class JellyCompletionContributor extends CompletionContributor
 {
 	public JellyCompletionContributor()
@@ -85,7 +84,7 @@ public class JellyCompletionContributor extends CompletionContributor
 
 				// this pseudo-tag represents the tag being completed.
 				XmlTag tag = (XmlTag) name.getParent();
-				Module module = ModuleUtil.findModuleForPsiElement(tag);
+				Module module = ModuleUtilCore.findModuleForPsiElement(tag);
 
                         /*
 						When completion is invoked after text like "<p:",
@@ -162,4 +161,11 @@ public class JellyCompletionContributor extends CompletionContributor
 	private static final ElementPattern XML_ELEMENT_NAME_PATTERN = new XmlElementPattern(XmlToken.class)
 	{
 	}.withParent(XmlTag.class);
+
+	@Nonnull
+	@Override
+	public Language getLanguage()
+	{
+		return XMLLanguage.INSTANCE;
+	}
 }

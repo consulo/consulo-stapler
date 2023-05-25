@@ -1,5 +1,0 @@
-<consulo-plugin>
-	<extensions defaultExtensionNs="org.jetbrains.idea.maven">
-		<importer implementation="consulo.stapler.maven.StaplerMavenImporter" />
-	</extensions>
-</consulo-plugin>

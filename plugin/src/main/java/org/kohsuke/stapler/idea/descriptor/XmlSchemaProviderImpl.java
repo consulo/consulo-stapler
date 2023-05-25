@@ -1,13 +1,14 @@
 package org.kohsuke.stapler.idea.descriptor;
 
-import com.intellij.openapi.module.Module;
-import com.intellij.psi.PsiDirectory;
-import com.intellij.psi.PsiFile;
-import com.intellij.psi.PsiFileFactory;
-import com.intellij.psi.xml.XmlFile;
 import com.intellij.xml.XmlNSDescriptor;
 import com.intellij.xml.XmlSchemaProvider;
+import consulo.annotation.component.ExtensionImpl;
+import consulo.language.psi.PsiDirectory;
+import consulo.language.psi.PsiFile;
+import consulo.language.psi.PsiFileFactory;
+import consulo.module.Module;
 import consulo.util.dataholder.Key;
+import consulo.xml.psi.xml.XmlFile;
 import org.kohsuke.stapler.idea.StaplerApplicationComponent;
 
 import javax.annotation.Nonnull;
@@ -22,6 +23,7 @@ import javax.annotation.Nullable;
  *
  * @author Kohsuke Kawaguchi
  */
+@ExtensionImpl
 public class XmlSchemaProviderImpl extends XmlSchemaProvider {
     public XmlFile getSchema(@Nonnull String url, @Nullable Module module, @Nonnull PsiFile baseFile) {
         XmlNSDescriptorImpl d = XmlNSDescriptorImpl.get(url, module);

@@ -1,11 +1,11 @@
 package consulo.stapler;
 
-import com.intellij.icons.AllIcons;
-import com.intellij.ide.highlighter.XmlLikeFileType;
-import com.intellij.lang.xml.XMLLanguage;
-import com.intellij.openapi.fileTypes.FileType;
+import consulo.application.AllIcons;
 import consulo.localize.LocalizeValue;
 import consulo.ui.image.Image;
+import consulo.virtualFileSystem.fileType.FileType;
+import consulo.xml.ide.highlighter.XmlLikeFileType;
+import consulo.xml.lang.xml.XMLLanguage;
 
 import javax.annotation.Nonnull;
 

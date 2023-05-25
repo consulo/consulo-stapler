@@ -1,23 +1,18 @@
 package org.kohsuke.stapler.idea;
 
-import com.intellij.codeInsight.daemon.GroupNames;
-import com.intellij.codeInspection.InspectionManager;
-import com.intellij.codeInspection.LocalQuickFix;
-import com.intellij.codeInspection.ProblemDescriptor;
-import com.intellij.codeInspection.ProblemHighlightType;
-import com.intellij.psi.xml.XmlText;
+import consulo.language.editor.inspection.LocalQuickFix;
+import consulo.language.editor.inspection.ProblemDescriptor;
+import consulo.language.editor.inspection.ProblemHighlightType;
+import consulo.language.editor.inspection.scheme.InspectionManager;
+import consulo.xml.psi.xml.XmlText;
 import org.jetbrains.annotations.Nls;
+
 import javax.annotation.Nonnull;
 
 /**
  * @author Kohsuke Kawaguchi
  */
 public class I18nInspection extends LocalXmlInspectionTool {
-    @Nls @Nonnull
-    public String getGroupDisplayName() {
-        return GroupNames.BUGS_GROUP_NAME;
-    }
-
     @Nls
     @Nonnull
     public String getDisplayName() {

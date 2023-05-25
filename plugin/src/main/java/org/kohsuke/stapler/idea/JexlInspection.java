@@ -1,17 +1,17 @@
 package org.kohsuke.stapler.idea;
 
-import com.intellij.codeHighlighting.HighlightDisplayLevel;
-import com.intellij.codeInsight.daemon.GroupNames;
-import com.intellij.codeInspection.InspectionManager;
-import com.intellij.codeInspection.LocalQuickFix;
-import com.intellij.codeInspection.ProblemDescriptor;
-import com.intellij.codeInspection.ProblemHighlightType;
-import com.intellij.openapi.util.TextRange;
-import com.intellij.openapi.util.UnfairTextRange;
-import com.intellij.psi.xml.XmlAttributeValue;
-import com.intellij.psi.xml.XmlElement;
-import com.intellij.psi.xml.XmlText;
 import consulo.annotation.access.RequiredReadAction;
+import consulo.annotation.component.ExtensionImpl;
+import consulo.document.util.TextRange;
+import consulo.document.util.UnfairTextRange;
+import consulo.language.editor.inspection.LocalQuickFix;
+import consulo.language.editor.inspection.ProblemDescriptor;
+import consulo.language.editor.inspection.ProblemHighlightType;
+import consulo.language.editor.inspection.scheme.InspectionManager;
+import consulo.language.editor.rawHighlight.HighlightDisplayLevel;
+import consulo.xml.psi.xml.XmlAttributeValue;
+import consulo.xml.psi.xml.XmlElement;
+import consulo.xml.psi.xml.XmlText;
 import org.apache.commons.jexl.ExpressionFactory;
 import org.apache.commons.jexl.parser.ParseException;
 import org.jetbrains.annotations.Nls;
@@ -21,12 +21,8 @@ import javax.annotation.Nonnull;
 /**
  * @author Kohsuke Kawaguchi
  */
+@ExtensionImpl
 public class JexlInspection extends LocalXmlInspectionTool {
-    @Nls @Nonnull
-    public String getGroupDisplayName() {
-        return GroupNames.BUGS_GROUP_NAME;
-    }
-
     @Nls @Nonnull
     public String getDisplayName() {
         return "Checks syntax of JEXL expressions";
@@ -68,7 +64,7 @@ public class JexlInspection extends LocalXmlInspectionTool {
      * @param range
      *      Text range in the document that the 'text' parameter represents
      */
-	@RequiredReadAction
+    @RequiredReadAction
     protected ProblemDescriptor[] check(XmlElement psi, InspectionManager manager, String text, TextRange range) {
         if(!psi.getContainingFile().getName().endsWith(".jelly"))
             return EMPTY_ARRAY; // not a jelly script

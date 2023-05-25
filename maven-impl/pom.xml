@@ -19,15 +19,10 @@
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>consulo</groupId>
-		<artifactId>arch.managment</artifactId>
+		<artifactId>arch.ide-api-provided</artifactId>
 		<version>3-SNAPSHOT</version>
 		<relativePath/>
 	</parent>
-
-	<groupId>consulo.plugin</groupId>
-	<artifactId>consulo.stapler.parent</artifactId>
-	<version>3-SNAPSHOT</version>
-	<packaging>pom</packaging>
 
 	<repositories>
 		<repository>
@@ -40,8 +35,17 @@
 		</repository>
 	</repositories>
 
-	<modules>
-		<module>plugin</module>
-		<module>maven-impl</module>
-	</modules>
+	<groupId>consulo.plugin</groupId>
+	<artifactId>consulo.stapler.maven.impl</artifactId>
+	<version>3-SNAPSHOT</version>
+	<packaging>jar</packaging>
+
+	<dependencies>
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>org.jetbrains.idea.maven</artifactId>
+			<version>${project.version}</version>
+			<scope>provided</scope>
+		</dependency>
+	</dependencies>
 </project>

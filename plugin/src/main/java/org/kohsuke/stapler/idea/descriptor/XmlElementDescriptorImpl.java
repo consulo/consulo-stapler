@@ -1,21 +1,21 @@
 package org.kohsuke.stapler.idea.descriptor;
 
-import java.util.HashMap;
-import java.util.List;
-
-import javax.annotation.Nullable;
-import org.kohsuke.stapler.idea.dom.model.AttributeTag;
-import org.kohsuke.stapler.idea.dom.model.DocumentationTag;
-import com.intellij.psi.PsiElement;
-import com.intellij.psi.util.PsiTreeUtil;
-import com.intellij.psi.xml.XmlDocument;
-import com.intellij.psi.xml.XmlElement;
-import com.intellij.psi.xml.XmlFile;
-import com.intellij.psi.xml.XmlTag;
 import com.intellij.xml.XmlAttributeDescriptor;
 import com.intellij.xml.XmlElementDescriptor;
 import com.intellij.xml.XmlNSDescriptor;
 import com.intellij.xml.impl.dtd.BaseXmlElementDescriptorImpl;
+import consulo.language.psi.PsiElement;
+import consulo.language.psi.util.PsiTreeUtil;
+import consulo.xml.psi.xml.XmlDocument;
+import consulo.xml.psi.xml.XmlElement;
+import consulo.xml.psi.xml.XmlFile;
+import consulo.xml.psi.xml.XmlTag;
+import org.kohsuke.stapler.idea.dom.model.AttributeTag;
+import org.kohsuke.stapler.idea.dom.model.DocumentationTag;
+
+import javax.annotation.Nullable;
+import java.util.HashMap;
+import java.util.List;
 
 /**
  * @author Kohsuke Kawaguchi

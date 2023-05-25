@@ -1,17 +1,21 @@
 package org.kohsuke.stapler.idea;
 
-import com.intellij.codeInspection.InspectionManager;
-import com.intellij.codeInspection.LocalInspectionTool;
-import com.intellij.codeInspection.ProblemDescriptor;
-import com.intellij.codeInspection.ProblemsHolder;
-import com.intellij.openapi.module.ModuleUtilCore;
-import com.intellij.psi.PsiElement;
-import com.intellij.psi.PsiElementVisitor;
-import com.intellij.psi.XmlElementVisitor;
-import com.intellij.psi.xml.XmlAttributeValue;
-import com.intellij.psi.xml.XmlText;
 import consulo.annotation.access.RequiredReadAction;
+import consulo.language.Language;
+import consulo.language.editor.inspection.LocalInspectionTool;
+import consulo.language.editor.inspection.ProblemDescriptor;
+import consulo.language.editor.inspection.ProblemsHolder;
+import consulo.language.editor.inspection.scheme.InspectionManager;
+import consulo.language.editor.rawHighlight.HighlightDisplayLevel;
+import consulo.language.psi.PsiElement;
+import consulo.language.psi.PsiElementVisitor;
+import consulo.language.util.ModuleUtilCore;
 import consulo.stapler.module.extension.StaplerModuleExtension;
+import consulo.xml.lang.xml.XMLLanguage;
+import consulo.xml.psi.XmlElementVisitor;
+import consulo.xml.psi.xml.XmlAttributeValue;
+import consulo.xml.psi.xml.XmlText;
+import jakarta.annotation.Nullable;
 import org.jetbrains.annotations.NonNls;
 
 import javax.annotation.Nonnull;
@@ -31,6 +35,27 @@ public abstract class LocalXmlInspectionTool extends LocalInspectionTool
 	protected static boolean shouldCheck(@Nonnull PsiElement psiElement)
 	{
 		return ModuleUtilCore.getExtension(psiElement, StaplerModuleExtension.class) != null;
+	}
+
+	@Nullable
+	@Override
+	public Language getLanguage()
+	{
+		return XMLLanguage.INSTANCE;
+	}
+
+	@Nonnull
+	@Override
+	public HighlightDisplayLevel getDefaultLevel()
+	{
+		return HighlightDisplayLevel.WARNING;
+	}
+
+	@Nonnull
+	@Override
+	public String getGroupDisplayName()
+	{
+		return "Jelly (Stapler)";
 	}
 
 	@NonNls

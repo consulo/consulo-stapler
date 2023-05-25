@@ -1,9 +1,9 @@
 package org.kohsuke.stapler.idea.dom.model;
 
-import javax.annotation.Nonnull;
+import consulo.xml.psi.xml.XmlAttribute;
+import consulo.xml.psi.xml.XmlTag;
 
-import com.intellij.psi.xml.XmlAttribute;
-import com.intellij.psi.xml.XmlTag;
+import javax.annotation.Nonnull;
 
 /**
  * {@link XmlTag} that wraps &lt;st:attribute>.

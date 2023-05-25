@@ -1,11 +1,10 @@
 package org.kohsuke.stapler.idea.dom.model;
 
-import com.intellij.psi.xml.XmlTag;
-
-import java.util.List;
-import java.util.ArrayList;
+import consulo.xml.psi.xml.XmlTag;
 
 import javax.annotation.Nonnull;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Wraps {@link XmlTag} for &lt;st:documentation> element.

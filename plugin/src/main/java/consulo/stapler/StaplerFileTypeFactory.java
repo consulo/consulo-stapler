@@ -1,14 +1,16 @@
 package consulo.stapler;
 
-import javax.annotation.Nonnull;
+import consulo.annotation.component.ExtensionImpl;
+import consulo.virtualFileSystem.fileType.FileTypeConsumer;
+import consulo.virtualFileSystem.fileType.FileTypeFactory;
 
-import com.intellij.openapi.fileTypes.FileTypeConsumer;
-import com.intellij.openapi.fileTypes.FileTypeFactory;
+import javax.annotation.Nonnull;
 
 /**
  * @author VISTALL
  * @since 16.06.2015
  */
+@ExtensionImpl
 public class StaplerFileTypeFactory extends FileTypeFactory
 {
 	@Override

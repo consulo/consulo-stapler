@@ -1,61 +1,40 @@
 package org.kohsuke.stapler.idea;
 
-import javax.annotation.Nonnull;
-
+import consulo.annotation.component.ExtensionImpl;
+import consulo.document.util.TextRange;
+import consulo.language.Language;
+import consulo.language.inject.MultiHostInjector;
+import consulo.language.inject.MultiHostRegistrar;
+import consulo.language.psi.PsiElement;
+import consulo.language.psi.PsiLanguageInjectionHost;
 import consulo.stapler.JellyFileType;
-import com.intellij.lang.Language;
-import com.intellij.lang.injection.MultiHostInjector;
-import com.intellij.lang.injection.MultiHostRegistrar;
-import com.intellij.openapi.util.TextRange;
-import com.intellij.psi.PsiElement;
-import com.intellij.psi.PsiLanguageInjectionHost;
-import com.intellij.psi.XmlElementVisitor;
-import com.intellij.psi.xml.XmlAttribute;
-import com.intellij.psi.xml.XmlAttributeValue;
-import com.intellij.psi.xml.XmlTag;
-import com.intellij.psi.xml.XmlText;
+import consulo.xml.psi.XmlElementVisitor;
+import consulo.xml.psi.xml.XmlTag;
+import consulo.xml.psi.xml.XmlText;
+
+import javax.annotation.Nonnull;
 
 /**
  * Injects CSS and JavaScript to suitable places
  *
  * @author Kohsuke Kawaguchi
  */
-public class JellyLanguageInjector implements MultiHostInjector
+@ExtensionImpl
+public class JellyXmlTagLanguageInjector implements MultiHostInjector
 {
+	@jakarta.annotation.Nonnull
+	@Override
+	public Class<? extends PsiElement> getElementClass()
+	{
+		return XmlTag.class;
+	}
+
 	@Override
 	public void injectLanguages(@Nonnull final MultiHostRegistrar registrar, @Nonnull PsiElement context)
 	{
 		if(context.getContainingFile().getFileType() != JellyFileType.INSTANCE)
 		{
 			return; // not a jelly file
-		}
-
-		// inject CSS to @style
-		if(context instanceof XmlAttributeValue)
-		{
-			final XmlAttributeValue value = (XmlAttributeValue) context;
-
-			if(!(value.getParent() instanceof XmlAttribute))
-			{
-				return; // not an XML attribute, probably an XML PI
-			}
-
-			XmlAttribute a = (XmlAttribute) value.getParent();
-			if(!a.getName().equals("style"))
-			{
-				return; // not a style attribute
-			}
-
-			Language language = Language.findLanguageByID("CSS");
-			if(language == null)
-			{
-				return;
-			}
-
-			registrar.startInjecting(language);
-			registrar.addPlace("dummy_selector {", "}", (PsiLanguageInjectionHost) value, TextRange.from(1, value.getTextLength() - 2));
-			registrar.doneInjecting();
-			return;
 		}
 
 		// inject JavaScript to <script>

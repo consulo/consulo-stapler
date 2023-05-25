@@ -1,13 +1,14 @@
 package org.kohsuke.stapler.idea;
 
-import consulo.stapler.JellyFileType;
-import com.intellij.lang.annotation.AnnotationHolder;
-import com.intellij.lang.annotation.Annotator;
-import com.intellij.psi.PsiElement;
-import com.intellij.psi.xml.XmlTag;
 import com.intellij.xml.XmlElementDescriptor;
 import com.intellij.xml.XmlNSDescriptor;
 import com.intellij.xml.impl.schema.AnyXmlElementDescriptor;
+import consulo.language.editor.annotation.AnnotationHolder;
+import consulo.language.editor.annotation.Annotator;
+import consulo.language.editor.annotation.HighlightSeverity;
+import consulo.language.psi.PsiElement;
+import consulo.stapler.JellyFileType;
+import consulo.xml.psi.xml.XmlTag;
 
 /**
  * Additional Jelly-specific {@link Annotator}.
@@ -35,7 +36,7 @@ public class JellyAnnotator implements Annotator {
             XmlElementDescriptor e = ns.getElementDescriptor(tag);
             if(e instanceof AnyXmlElementDescriptor) {
                 PsiElement startTagName = tag.getFirstChild().getNextSibling();
-                holder.createErrorAnnotation(startTagName,"Undefined element");
+                holder.newAnnotation(HighlightSeverity.ERROR,"Undefined element").range(startTagName).create();
             }
         }
     }

@@ -1,24 +1,24 @@
 package org.kohsuke.stapler.idea.psi.ref;
 
-import com.intellij.openapi.module.Module;
-import com.intellij.openapi.module.ModuleUtil;
-import com.intellij.openapi.util.TextRange;
-import com.intellij.psi.JavaPsiFacade;
-import com.intellij.psi.PsiDirectory;
-import com.intellij.psi.PsiFile;
-import com.intellij.psi.PsiJavaPackage;
-import com.intellij.psi.PsiReference;
-import com.intellij.psi.PsiReferenceBase;
-import com.intellij.psi.search.GlobalSearchScope;
-import com.intellij.psi.xml.XmlFile;
-import com.intellij.psi.xml.XmlTag;
+import com.intellij.java.language.psi.JavaPsiFacade;
+import com.intellij.java.language.psi.PsiJavaPackage;
+import consulo.document.util.TextRange;
+import consulo.language.psi.PsiDirectory;
+import consulo.language.psi.PsiFile;
+import consulo.language.psi.PsiReferenceBase;
+import consulo.language.psi.scope.GlobalSearchScope;
+import consulo.language.util.ModuleUtilCore;
+import consulo.module.Module;
+import consulo.xml.psi.xml.XmlFile;
+import consulo.xml.psi.xml.XmlTag;
 
 /**
  * {@link PsiReference} to a definition of a Jelly tag.
  *
  * @author Kohsuke Kawaguchi
  */
-public final class TagReference extends PsiReferenceBase<XmlTag> {
+public final class TagReference extends PsiReferenceBase<XmlTag>
+{
     public TagReference(XmlTag ref) {
         super(ref,calcTagNameRange(ref));
     }
@@ -47,7 +47,7 @@ public final class TagReference extends PsiReferenceBase<XmlTag> {
         String nsUri = myElement.getNamespace();
         if(nsUri.length()==0)   return null;
 
-        Module m = ModuleUtil.findModuleForPsiElement(myElement);
+        Module m = ModuleUtilCore.findModuleForPsiElement(myElement);
         if(m==null) return null; // just trying to be defensive
 
         JavaPsiFacade javaPsi = JavaPsiFacade.getInstance(myElement.getProject());
