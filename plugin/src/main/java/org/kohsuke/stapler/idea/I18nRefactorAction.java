@@ -12,7 +12,9 @@ import consulo.codeEditor.util.EditorModificationUtil;
 import consulo.document.util.TextRange;
 import consulo.language.psi.*;
 import consulo.language.util.IncorrectOperationException;
+import consulo.module.extension.ModuleExtensionHelper;
 import consulo.project.Project;
+import consulo.stapler.module.extension.StaplerModuleExtension;
 import consulo.ui.annotation.RequiredUIAccess;
 import consulo.ui.ex.action.AnActionEvent;
 import consulo.ui.ex.action.DumbAwareAction;
@@ -33,7 +35,9 @@ public class I18nRefactorAction extends DumbAwareAction
 	@Override
 	public void update(@Nonnull AnActionEvent e)
 	{
-		e.getPresentation().setEnabled(e.getData(Editor.KEY) != null);
+		Editor editor = e.getData(Editor.KEY);
+		Project project = e.getData(Project.KEY);
+		e.getPresentation().setEnabled(editor != null && project != null && ModuleExtensionHelper.getInstance(project).hasModuleExtension(StaplerModuleExtension.class));
 	}
 
 	@RequiredUIAccess
