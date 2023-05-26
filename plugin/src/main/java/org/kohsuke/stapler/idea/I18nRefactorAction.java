@@ -37,7 +37,7 @@ public class I18nRefactorAction extends DumbAwareAction
 	{
 		Editor editor = e.getData(Editor.KEY);
 		Project project = e.getData(Project.KEY);
-		e.getPresentation().setEnabled(editor != null && project != null && ModuleExtensionHelper.getInstance(project).hasModuleExtension(StaplerModuleExtension.class));
+		e.getPresentation().setEnabledAndVisible(editor != null && project != null && ModuleExtensionHelper.getInstance(project).hasModuleExtension(StaplerModuleExtension.class));
 	}
 
 	@RequiredUIAccess
