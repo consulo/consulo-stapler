@@ -18,7 +18,7 @@ import consulo.xml.psi.xml.XmlText;
 import jakarta.annotation.Nullable;
 import org.jetbrains.annotations.NonNls;
 
-import javax.annotation.Nonnull;
+import jakarta.annotation.Nonnull;
 
 /**
  * {@link LocalInspectionTool} with enhancements to handle XML files.

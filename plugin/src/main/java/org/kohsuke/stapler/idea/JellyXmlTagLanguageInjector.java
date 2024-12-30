@@ -12,7 +12,7 @@ import consulo.xml.psi.XmlElementVisitor;
 import consulo.xml.psi.xml.XmlTag;
 import consulo.xml.psi.xml.XmlText;
 
-import javax.annotation.Nonnull;
+import jakarta.annotation.Nonnull;
 
 /**
  * Injects CSS and JavaScript to suitable places

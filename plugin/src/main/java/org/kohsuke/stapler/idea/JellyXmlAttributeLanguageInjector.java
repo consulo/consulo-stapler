@@ -11,7 +11,7 @@ import consulo.stapler.JellyFileType;
 import consulo.xml.psi.xml.XmlAttribute;
 import consulo.xml.psi.xml.XmlAttributeValue;
 
-import javax.annotation.Nonnull;
+import jakarta.annotation.Nonnull;
 
 /**
  * Injects CSS and JavaScript to suitable places

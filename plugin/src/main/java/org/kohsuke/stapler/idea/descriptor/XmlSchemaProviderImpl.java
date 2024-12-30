@@ -11,8 +11,8 @@ import consulo.util.dataholder.Key;
 import consulo.xml.psi.xml.XmlFile;
 import org.kohsuke.stapler.idea.StaplerApplicationComponent;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 
 /**
  *

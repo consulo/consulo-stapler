@@ -3,7 +3,7 @@ package org.kohsuke.stapler.idea.dom.model;
 import consulo.xml.psi.xml.XmlAttribute;
 import consulo.xml.psi.xml.XmlTag;
 
-import javax.annotation.Nonnull;
+import jakarta.annotation.Nonnull;
 
 /**
  * {@link XmlTag} that wraps &lt;st:attribute>.

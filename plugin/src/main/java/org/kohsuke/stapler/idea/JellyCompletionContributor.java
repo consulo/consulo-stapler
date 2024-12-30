@@ -19,7 +19,7 @@ import consulo.xml.psi.xml.XmlTag;
 import consulo.xml.psi.xml.XmlToken;
 import org.kohsuke.stapler.idea.descriptor.XmlNSDescriptorImpl;
 
-import javax.annotation.Nonnull;
+import jakarta.annotation.Nonnull;
 
 /**
  * Tag name completion for Jelly tag libraries defined as tag files.

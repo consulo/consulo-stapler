@@ -7,7 +7,7 @@ import consulo.language.editor.inspection.scheme.InspectionManager;
 import consulo.xml.psi.xml.XmlText;
 import org.jetbrains.annotations.Nls;
 
-import javax.annotation.Nonnull;
+import jakarta.annotation.Nonnull;
 
 /**
  * @author Kohsuke Kawaguchi

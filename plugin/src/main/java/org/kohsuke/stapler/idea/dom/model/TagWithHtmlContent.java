@@ -6,7 +6,7 @@ import net.java.textilej.parser.MarkupParser;
 import net.java.textilej.parser.builder.HtmlDocumentBuilder;
 import net.java.textilej.parser.markup.confluence.ConfluenceDialect;
 
-import javax.annotation.Nonnull;
+import jakarta.annotation.Nonnull;
 import java.io.StringWriter;
 
 /**
