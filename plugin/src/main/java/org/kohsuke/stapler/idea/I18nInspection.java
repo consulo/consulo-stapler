@@ -4,6 +4,7 @@ import consulo.language.editor.inspection.LocalQuickFix;
 import consulo.language.editor.inspection.ProblemDescriptor;
 import consulo.language.editor.inspection.ProblemHighlightType;
 import consulo.language.editor.inspection.scheme.InspectionManager;
+import consulo.localize.LocalizeValue;
 import consulo.xml.psi.xml.XmlText;
 import org.jetbrains.annotations.Nls;
 
@@ -15,8 +16,8 @@ import jakarta.annotation.Nonnull;
 public class I18nInspection extends LocalXmlInspectionTool {
     @Nls
     @Nonnull
-    public String getDisplayName() {
-        return "Tests something";
+    public LocalizeValue getDisplayName() {
+        return LocalizeValue.localizeTODO("Tests something");
     }
 
     protected ProblemDescriptor[] checkXmlText(XmlText text, InspectionManager manager, boolean onTheFly) {

@@ -9,23 +9,22 @@ import consulo.language.editor.inspection.ProblemDescriptor;
 import consulo.language.editor.inspection.ProblemHighlightType;
 import consulo.language.editor.inspection.scheme.InspectionManager;
 import consulo.language.editor.rawHighlight.HighlightDisplayLevel;
+import consulo.localize.LocalizeValue;
 import consulo.xml.psi.xml.XmlAttributeValue;
 import consulo.xml.psi.xml.XmlElement;
 import consulo.xml.psi.xml.XmlText;
+import jakarta.annotation.Nonnull;
 import org.apache.commons.jexl.ExpressionFactory;
 import org.apache.commons.jexl.parser.ParseException;
-import org.jetbrains.annotations.Nls;
-
-import jakarta.annotation.Nonnull;
 
 /**
  * @author Kohsuke Kawaguchi
  */
 @ExtensionImpl
 public class JexlInspection extends LocalXmlInspectionTool {
-    @Nls @Nonnull
-    public String getDisplayName() {
-        return "Checks syntax of JEXL expressions";
+    @Nonnull
+    public LocalizeValue getDisplayName() {
+        return LocalizeValue.localizeTODO("Checks syntax of JEXL expressions");
     }
 
     @Nonnull
