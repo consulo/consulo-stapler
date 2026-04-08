@@ -2,18 +2,18 @@ package org.kohsuke.stapler.idea.descriptor;
 
 import com.intellij.java.language.psi.JavaPsiFacade;
 import com.intellij.java.language.psi.PsiJavaPackage;
-import com.intellij.xml.XmlElementDescriptor;
-import com.intellij.xml.XmlNSDescriptor;
 import consulo.language.psi.PsiDirectory;
 import consulo.language.psi.PsiElement;
 import consulo.language.psi.PsiFile;
 import consulo.language.psi.scope.GlobalSearchScope;
 import consulo.language.util.ModuleUtilCore;
 import consulo.module.Module;
-import consulo.xml.psi.xml.XmlDocument;
-import consulo.xml.psi.xml.XmlFile;
-import consulo.xml.psi.xml.XmlTag;
+import consulo.xml.descriptor.XmlElementDescriptor;
+import consulo.xml.descriptor.XmlNSDescriptor;
 
+import consulo.xml.language.psi.XmlDocument;
+import consulo.xml.language.psi.XmlFile;
+import consulo.xml.language.psi.XmlTag;
 import jakarta.annotation.Nonnull;
 import jakarta.annotation.Nullable;
 import java.util.ArrayList;

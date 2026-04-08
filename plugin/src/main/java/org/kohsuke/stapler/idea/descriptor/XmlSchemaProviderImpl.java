@@ -1,6 +1,5 @@
 package org.kohsuke.stapler.idea.descriptor;
 
-import com.intellij.xml.XmlNSDescriptor;
 import com.intellij.xml.XmlSchemaProvider;
 import consulo.annotation.component.ExtensionImpl;
 import consulo.language.psi.PsiDirectory;
@@ -8,7 +7,7 @@ import consulo.language.psi.PsiFile;
 import consulo.language.psi.PsiFileFactory;
 import consulo.module.Module;
 import consulo.util.dataholder.Key;
-import consulo.xml.psi.xml.XmlFile;
+import consulo.xml.language.psi.XmlFile;
 import org.kohsuke.stapler.idea.StaplerApplicationComponent;
 
 import jakarta.annotation.Nonnull;

@@ -5,7 +5,7 @@ import consulo.language.editor.inspection.ProblemDescriptor;
 import consulo.language.editor.inspection.ProblemHighlightType;
 import consulo.language.editor.inspection.scheme.InspectionManager;
 import consulo.localize.LocalizeValue;
-import consulo.xml.psi.xml.XmlText;
+import consulo.xml.language.psi.XmlText;
 import org.jetbrains.annotations.Nls;
 
 import jakarta.annotation.Nonnull;

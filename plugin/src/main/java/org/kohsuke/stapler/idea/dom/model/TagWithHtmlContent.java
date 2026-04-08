@@ -1,7 +1,7 @@
 package org.kohsuke.stapler.idea.dom.model;
 
-import consulo.xml.psi.xml.XmlTag;
-import consulo.xml.psi.xml.XmlTagChild;
+import consulo.xml.language.psi.XmlTag;
+import consulo.xml.language.psi.XmlTagChild;
 import net.java.textilej.parser.MarkupParser;
 import net.java.textilej.parser.builder.HtmlDocumentBuilder;
 import net.java.textilej.parser.markup.confluence.ConfluenceDialect;

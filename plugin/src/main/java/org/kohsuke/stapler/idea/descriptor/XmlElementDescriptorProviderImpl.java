@@ -1,8 +1,8 @@
 package org.kohsuke.stapler.idea.descriptor;
 
-import com.intellij.xml.XmlElementDescriptor;
+import consulo.xml.descriptor.XmlElementDescriptor;
+import consulo.xml.language.psi.XmlTag;
 import consulo.xml.psi.impl.source.xml.XmlElementDescriptorProvider;
-import consulo.xml.psi.xml.XmlTag;
 
 /**
  * Contributes {@link XmlElementDescriptorProvider} for Jelly tags.

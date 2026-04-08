@@ -1,15 +1,15 @@
 package org.kohsuke.stapler.idea.descriptor;
 
-import com.intellij.xml.XmlAttributeDescriptor;
-import com.intellij.xml.XmlElementDescriptor;
-import com.intellij.xml.XmlNSDescriptor;
 import com.intellij.xml.impl.dtd.BaseXmlElementDescriptorImpl;
 import consulo.language.psi.PsiElement;
 import consulo.language.psi.util.PsiTreeUtil;
-import consulo.xml.psi.xml.XmlDocument;
-import consulo.xml.psi.xml.XmlElement;
-import consulo.xml.psi.xml.XmlFile;
-import consulo.xml.psi.xml.XmlTag;
+import consulo.xml.descriptor.XmlAttributeDescriptor;
+import consulo.xml.descriptor.XmlElementDescriptor;
+import consulo.xml.descriptor.XmlNSDescriptor;
+import consulo.xml.language.psi.XmlDocument;
+import consulo.xml.language.psi.XmlElement;
+import consulo.xml.language.psi.XmlFile;
+import consulo.xml.language.psi.XmlTag;
 import org.kohsuke.stapler.idea.dom.model.AttributeTag;
 import org.kohsuke.stapler.idea.dom.model.DocumentationTag;
 

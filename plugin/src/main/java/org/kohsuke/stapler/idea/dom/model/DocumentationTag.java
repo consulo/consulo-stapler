@@ -1,7 +1,6 @@
 package org.kohsuke.stapler.idea.dom.model;
 
-import consulo.xml.psi.xml.XmlTag;
-
+import consulo.xml.language.psi.XmlTag;
 import jakarta.annotation.Nonnull;
 import java.util.ArrayList;
 import java.util.List;

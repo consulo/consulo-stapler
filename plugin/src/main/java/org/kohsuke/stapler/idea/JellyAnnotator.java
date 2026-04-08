@@ -1,14 +1,14 @@
 package org.kohsuke.stapler.idea;
 
-import com.intellij.xml.XmlElementDescriptor;
-import com.intellij.xml.XmlNSDescriptor;
 import com.intellij.xml.impl.schema.AnyXmlElementDescriptor;
 import consulo.language.editor.annotation.AnnotationHolder;
 import consulo.language.editor.annotation.Annotator;
 import consulo.language.editor.annotation.HighlightSeverity;
 import consulo.language.psi.PsiElement;
 import consulo.stapler.JellyFileType;
-import consulo.xml.psi.xml.XmlTag;
+import consulo.xml.descriptor.XmlElementDescriptor;
+import consulo.xml.descriptor.XmlNSDescriptor;
+import consulo.xml.language.psi.XmlTag;
 
 /**
  * Additional Jelly-specific {@link Annotator}.

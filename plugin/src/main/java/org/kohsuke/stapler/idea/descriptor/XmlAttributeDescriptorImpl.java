@@ -1,8 +1,8 @@
 package org.kohsuke.stapler.idea.descriptor;
 
-import com.intellij.xml.XmlAttributeDescriptor;
 import consulo.language.psi.PsiElement;
-import consulo.xml.psi.xml.XmlElement;
+import consulo.xml.descriptor.XmlAttributeDescriptor;
+import consulo.xml.language.psi.XmlElement;
 import org.kohsuke.stapler.idea.dom.model.AttributeTag;
 
 /**

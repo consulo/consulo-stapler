@@ -10,10 +10,10 @@ import consulo.language.psi.scope.GlobalSearchScope;
 import consulo.language.util.ModuleUtilCore;
 import consulo.language.util.ProcessingContext;
 import consulo.module.Module;
-import consulo.xml.psi.xml.XmlAttribute;
-import consulo.xml.psi.xml.XmlAttributeValue;
-import consulo.xml.psi.xml.XmlTag;
 
+import consulo.xml.language.psi.XmlAttribute;
+import consulo.xml.language.psi.XmlAttributeValue;
+import consulo.xml.language.psi.XmlTag;
 import jakarta.annotation.Nonnull;
 
 /**

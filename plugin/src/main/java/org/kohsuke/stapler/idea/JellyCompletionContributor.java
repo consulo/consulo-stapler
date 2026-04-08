@@ -1,6 +1,5 @@
 package org.kohsuke.stapler.idea;
 
-import com.intellij.xml.XmlElementDescriptor;
 import consulo.annotation.component.ExtensionImpl;
 import consulo.language.Language;
 import consulo.language.editor.completion.*;
@@ -11,12 +10,13 @@ import consulo.language.util.ModuleUtilCore;
 import consulo.language.util.ProcessingContext;
 import consulo.module.Module;
 import consulo.stapler.JellyFileType;
-import consulo.xml.lang.xml.XMLLanguage;
+import consulo.xml.descriptor.XmlElementDescriptor;
+import consulo.xml.language.XMLLanguage;
+import consulo.xml.language.psi.XmlAttribute;
+import consulo.xml.language.psi.XmlElement;
+import consulo.xml.language.psi.XmlTag;
+import consulo.xml.language.psi.XmlToken;
 import consulo.xml.patterns.XmlElementPattern;
-import consulo.xml.psi.xml.XmlAttribute;
-import consulo.xml.psi.xml.XmlElement;
-import consulo.xml.psi.xml.XmlTag;
-import consulo.xml.psi.xml.XmlToken;
 import org.kohsuke.stapler.idea.descriptor.XmlNSDescriptorImpl;
 
 import jakarta.annotation.Nonnull;

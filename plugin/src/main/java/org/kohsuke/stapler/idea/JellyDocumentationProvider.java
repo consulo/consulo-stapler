@@ -1,15 +1,15 @@
 package org.kohsuke.stapler.idea;
 
-import com.intellij.xml.XmlAttributeDescriptor;
-import com.intellij.xml.XmlElementDescriptor;
 import consulo.annotation.component.ExtensionImpl;
 import consulo.language.Language;
 import consulo.language.editor.documentation.LanguageDocumentationProvider;
 import consulo.language.psi.PsiElement;
 import consulo.language.psi.util.PsiTreeUtil;
-import consulo.xml.lang.xml.XMLLanguage;
-import consulo.xml.psi.xml.XmlAttribute;
-import consulo.xml.psi.xml.XmlTag;
+import consulo.xml.descriptor.XmlAttributeDescriptor;
+import consulo.xml.descriptor.XmlElementDescriptor;
+import consulo.xml.language.XMLLanguage;
+import consulo.xml.language.psi.XmlAttribute;
+import consulo.xml.language.psi.XmlTag;
 import jakarta.annotation.Nonnull;
 import org.kohsuke.stapler.idea.descriptor.XmlAttributeDescriptorImpl;
 import org.kohsuke.stapler.idea.descriptor.XmlElementDescriptorImpl;

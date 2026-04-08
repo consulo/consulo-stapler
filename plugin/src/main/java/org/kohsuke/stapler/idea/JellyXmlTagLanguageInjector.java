@@ -8,10 +8,10 @@ import consulo.language.inject.MultiHostRegistrar;
 import consulo.language.psi.PsiElement;
 import consulo.language.psi.PsiLanguageInjectionHost;
 import consulo.stapler.JellyFileType;
-import consulo.xml.psi.XmlElementVisitor;
-import consulo.xml.psi.xml.XmlTag;
-import consulo.xml.psi.xml.XmlText;
 
+import consulo.xml.language.psi.XmlElementVisitor;
+import consulo.xml.language.psi.XmlTag;
+import consulo.xml.language.psi.XmlText;
 import jakarta.annotation.Nonnull;
 
 /**

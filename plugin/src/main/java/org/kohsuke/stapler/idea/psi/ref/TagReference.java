@@ -9,8 +9,8 @@ import consulo.language.psi.PsiReferenceBase;
 import consulo.language.psi.scope.GlobalSearchScope;
 import consulo.language.util.ModuleUtilCore;
 import consulo.module.Module;
-import consulo.xml.psi.xml.XmlFile;
-import consulo.xml.psi.xml.XmlTag;
+import consulo.xml.language.psi.XmlFile;
+import consulo.xml.language.psi.XmlTag;
 
 /**
  * {@link PsiReference} to a definition of a Jelly tag.

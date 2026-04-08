@@ -1,8 +1,7 @@
 package org.kohsuke.stapler.idea.dom.model;
 
-import consulo.xml.psi.xml.XmlAttribute;
-import consulo.xml.psi.xml.XmlTag;
-
+import consulo.xml.language.psi.XmlAttribute;
+import consulo.xml.language.psi.XmlTag;
 import jakarta.annotation.Nonnull;
 
 /**

@@ -3,7 +3,7 @@ package org.kohsuke.stapler.idea;
 import consulo.language.pattern.StandardPatterns;
 import consulo.language.psi.PsiReferenceContributor;
 import consulo.language.psi.PsiReferenceRegistrar;
-import consulo.xml.psi.xml.XmlAttributeValue;
+import consulo.xml.language.psi.XmlAttributeValue;
 
 /**
  * @author Kohsuke Kawaguchi
