@@ -16,7 +16,7 @@ import consulo.xml.language.psi.XmlAttribute;
 import consulo.xml.language.psi.XmlElement;
 import consulo.xml.language.psi.XmlTag;
 import consulo.xml.language.psi.XmlToken;
-import consulo.xml.patterns.XmlElementPattern;
+import consulo.xml.language.psi.pattern.XmlElementPattern;
 import org.kohsuke.stapler.idea.descriptor.XmlNSDescriptorImpl;
 
 import jakarta.annotation.Nonnull;
