@@ -6,6 +6,7 @@ import com.intellij.lang.properties.psi.PropertiesElementFactory;
 import com.intellij.lang.properties.psi.PropertiesFile;
 import com.intellij.lang.properties.psi.Property;
 import consulo.application.ApplicationManager;
+import consulo.application.dumb.DumbAware;
 import consulo.codeEditor.Editor;
 import consulo.codeEditor.SelectionModel;
 import consulo.codeEditor.util.EditorModificationUtil;
@@ -16,12 +17,14 @@ import consulo.module.extension.ModuleExtensionHelper;
 import consulo.project.Project;
 import consulo.stapler.module.extension.StaplerModuleExtension;
 import consulo.ui.annotation.RequiredUIAccess;
+import consulo.ui.ex.action.AnAction;
 import consulo.ui.ex.action.AnActionEvent;
+import consulo.ui.ex.action.AnActionWithSyncUpdate;
 import consulo.ui.ex.action.DumbAwareAction;
 import consulo.ui.ex.awt.Messages;
 import jakarta.annotation.Nonnull;
-
 import jakarta.annotation.Nullable;
+
 import java.util.List;
 
 /**
@@ -29,278 +32,233 @@ import java.util.List;
  *
  * @author Kohsuke Kawaguchi
  */
-public class I18nRefactorAction extends DumbAwareAction
-{
-	@RequiredUIAccess
-	@Override
-	public void update(@Nonnull AnActionEvent e)
-	{
-		Editor editor = e.getData(Editor.KEY);
-		Project project = e.getData(Project.KEY);
-		e.getPresentation().setEnabledAndVisible(editor != null && project != null && ModuleExtensionHelper.getInstance(project).hasModuleExtension(StaplerModuleExtension.class));
-	}
+public class I18nRefactorAction extends AnAction implements DumbAware, AnActionWithSyncUpdate {
+    @Override
+    public void update(@Nonnull AnActionEvent e) {
+        Editor editor = e.getData(Editor.KEY);
+        Project project = e.getData(Project.KEY);
+        e.getPresentation().setEnabledAndVisible(editor != null && project != null && ModuleExtensionHelper.getInstance(project).hasModuleExtension(StaplerModuleExtension.class));
+    }
 
-	@RequiredUIAccess
-	@Override
-	public void actionPerformed(@Nonnull AnActionEvent event)
-	{
-		Editor editor = event.getData(Editor.KEY);
-		if(editor == null) // be defensive
-		{
-			return;
-		}
+    @RequiredUIAccess
+    @Override
+    public void actionPerformed(@Nonnull AnActionEvent event) {
+        Editor editor = event.getData(Editor.KEY);
+        if (editor == null) // be defensive
+        {
+            return;
+        }
 
-		SelectionModel selectionModel = editor.getSelectionModel();
+        SelectionModel selectionModel = editor.getSelectionModel();
 
-		//                String selectedText = selectionModel.getSelectedText();
-		//                Messages.showInfoMessage(selectedText, "selection");
+        //                String selectedText = selectionModel.getSelectedText();
+        //                Messages.showInfoMessage(selectedText, "selection");
 
-		final Project project = editor.getProject();
-		if(project == null)
-		{
-			return;
-		}
+        final Project project = editor.getProject();
+        if (project == null) {
+            return;
+        }
 
-		PsiDocumentManager psiManager = PsiDocumentManager.getInstance(project);
-		PsiFile psiFile = psiManager.getPsiFile(editor.getDocument());
-		if(!(psiFile instanceof PsiJavaFile))
-		{
-			return; // not a Java source file
-		}
+        PsiDocumentManager psiManager = PsiDocumentManager.getInstance(project);
+        PsiFile psiFile = psiManager.getPsiFile(editor.getDocument());
+        if (!(psiFile instanceof PsiJavaFile)) {
+            return; // not a Java source file
+        }
 
-		// look for Messages.properties
-		PsiJavaFile javaFile = (PsiJavaFile) psiFile;
-		PsiFile props = findMessagesDotProperties(project, javaFile);
-		if(props == null)
-		{
-			Messages.showErrorDialog("Can't find Messages.properties", "stapler i18n");
-			return;
-		}
-		if(!(props instanceof PropertiesFile))
-		{
-			Messages.showErrorDialog("Messages.properties is not a property file", "stapler i18n");
-			return;
-		}
-		final PropertiesFile propsFile = (PropertiesFile) props;
+        // look for Messages.properties
+        PsiJavaFile javaFile = (PsiJavaFile) psiFile;
+        PsiFile props = findMessagesDotProperties(project, javaFile);
+        if (props == null) {
+            Messages.showErrorDialog("Can't find Messages.properties", "stapler i18n");
+            return;
+        }
+        if (!(props instanceof PropertiesFile)) {
+            Messages.showErrorDialog("Messages.properties is not a property file", "stapler i18n");
+            return;
+        }
+        final PropertiesFile propsFile = (PropertiesFile) props;
 
-		// find the expression currently selected
-		PsiElement e = findSelectedPsiElement(selectionModel, javaFile);
-		while(e != null)
-		{
-			if(e instanceof PsiExpression)
-			{
-				break;
-			}
-			e = e.getParent();
-		}
-		if(e == null)
-		{
-			Messages.showErrorDialog("An expression needs to be selected", "stapler i18n");
-			return;
-		}
+        // find the expression currently selected
+        PsiElement e = findSelectedPsiElement(selectionModel, javaFile);
+        while (e != null) {
+            if (e instanceof PsiExpression) {
+                break;
+            }
+            e = e.getParent();
+        }
+        if (e == null) {
+            Messages.showErrorDialog("An expression needs to be selected", "stapler i18n");
+            return;
+        }
 
-		final PsiExpression exp = (PsiExpression) e;
-		final PsiClassType stringType = PsiType.getJavaLangString(PsiManager.getInstance(project), e.getResolveScope());
-		if(exp.getType() == null || !exp.getType().equals(stringType))
-		{
-			Messages.showErrorDialog("A string expression needs to be selected", "stapler i18n");
-			return;
-		}
+        final PsiExpression exp = (PsiExpression) e;
+        final PsiClassType stringType = PsiType.getJavaLangString(PsiManager.getInstance(project), e.getResolveScope());
+        if (exp.getType() == null || !exp.getType().equals(stringType)) {
+            Messages.showErrorDialog("A string expression needs to be selected", "stapler i18n");
+            return;
+        }
 
-		final String key = getResourceName(javaFile);
-		if(key == null)
-		{
-			return; // cancelled
-		}
+        final String key = getResourceName(javaFile);
+        if (key == null) {
+            return; // cancelled
+        }
 
-		// property value
-		final StringBuilder propertyValue = new StringBuilder();
-		// expression to refer to string value
-		final StringBuilder expression = new StringBuilder();
-		new Runnable()
-		{
-			int numArgs = 0;
+        // property value
+        final StringBuilder propertyValue = new StringBuilder();
+        // expression to refer to string value
+        final StringBuilder expression = new StringBuilder();
+        new Runnable() {
+            int numArgs = 0;
 
-			public void run()
-			{
-				process(exp);
-			}
+            public void run() {
+                process(exp);
+            }
 
-			private void process(PsiElement exp)
-			{
-				if(exp instanceof PsiLiteralExpression)
-				{
-					PsiLiteralExpression lit = (PsiLiteralExpression) exp;
-					if(lit.getType().equals(stringType))
-					{
-						escapeAndAppend(lit.getValue().toString());
-						return;
-					}
-				}
+            private void process(PsiElement exp) {
+                if (exp instanceof PsiLiteralExpression) {
+                    PsiLiteralExpression lit = (PsiLiteralExpression) exp;
+                    if (lit.getType().equals(stringType)) {
+                        escapeAndAppend(lit.getValue().toString());
+                        return;
+                    }
+                }
 
-				if(exp instanceof PsiBinaryExpression)
-				{
-					PsiBinaryExpression binExp = (PsiBinaryExpression) exp;
-					if(binExp.getOperationTokenType() == JavaTokenType.PLUS)
-					{
-						process(binExp.getLOperand());
-						process(binExp.getROperand());
-						return;
-					}
-				}
+                if (exp instanceof PsiBinaryExpression) {
+                    PsiBinaryExpression binExp = (PsiBinaryExpression) exp;
+                    if (binExp.getOperationTokenType() == JavaTokenType.PLUS) {
+                        process(binExp.getLOperand());
+                        process(binExp.getROperand());
+                        return;
+                    }
+                }
 
-				propertyValue.append('{').append(numArgs++).append('}');
-				if(expression.length() > 0)
-				{
-					expression.append(',');
-				}
-				expression.append(exp.getText());
-			}
+                propertyValue.append('{').append(numArgs++).append('}');
+                if (expression.length() > 0) {
+                    expression.append(',');
+                }
+                expression.append(exp.getText());
+            }
 
-			/**
-			 * Takes the literal string value and appends that to <tt>propertyValue</tt>
-			 * with proper escaping.
-			 */
-			private void escapeAndAppend(String value)
-			{
-				for(char ch : value.toCharArray())
-				{
-					switch(ch)
-					{
-						case '\'':
-							propertyValue.append("''");
-							break;
-						case '{':
-						case '}':
-							propertyValue.append('\'').append(ch).append('\'');
-							break;
-						case ' ':
-							if(propertyValue.length() == 0)
-							{
-								propertyValue.append('\\');
-							}
-							// fall through
-						default:
-							propertyValue.append(ch);
-					}
-				}
-			}
-		}.run();
+            /**
+             * Takes the literal string value and appends that to <tt>propertyValue</tt>
+             * with proper escaping.
+             */
+            private void escapeAndAppend(String value) {
+                for (char ch : value.toCharArray()) {
+                    switch (ch) {
+                        case '\'':
+                            propertyValue.append("''");
+                            break;
+                        case '{':
+                        case '}':
+                            propertyValue.append('\'').append(ch).append('\'');
+                            break;
+                        case ' ':
+                            if (propertyValue.length() == 0) {
+                                propertyValue.append('\\');
+                            }
+                            // fall through
+                        default:
+                            propertyValue.append(ch);
+                    }
+                }
+            }
+        }.run();
 
-		// IDEA bombed out saying I need to wrap the addProperty into this.
-		ApplicationManager.getApplication().runWriteAction(new Runnable()
-		{
-			public void run()
-			{
-				try
-				{
-					propsFile.addPropertyAfter(
-							(Property) PropertiesElementFactory.createProperty(project, key, propertyValue.toString()),
-							(Property) findAnchor(propsFile, key));
-				}
-				catch(IncorrectOperationException x)
-				{
-					Messages.showErrorDialog(x.getMessage(), "Unable to add property");
-					return;
-				}
+        // IDEA bombed out saying I need to wrap the addProperty into this.
+        ApplicationManager.getApplication().runWriteAction(new Runnable() {
+            public void run() {
+                try {
+                    propsFile.addPropertyAfter(
+                        (Property) PropertiesElementFactory.createProperty(project, key, propertyValue.toString()),
+                        (Property) findAnchor(propsFile, key));
+                }
+                catch (IncorrectOperationException x) {
+                    Messages.showErrorDialog(x.getMessage(), "Unable to add property");
+                    return;
+                }
 
-				// wrap the arguments into "Messages.KEY(...)"
-				expression.insert(0, "Messages." + toJavaIdentifier(key) + "(");
-				expression.append(")");
+                // wrap the arguments into "Messages.KEY(...)"
+                expression.insert(0, "Messages." + toJavaIdentifier(key) + "(");
+                expression.append(")");
 
-				TextRange tr = exp.getTextRange();
-				editor.getDocument().deleteString(tr.getStartOffset(), tr.getEndOffset());
-				EditorModificationUtil.insertStringAtCaret(editor, expression.toString());
-			}
+                TextRange tr = exp.getTextRange();
+                editor.getDocument().deleteString(tr.getStartOffset(), tr.getEndOffset());
+                EditorModificationUtil.insertStringAtCaret(editor, expression.toString());
+            }
 
-			private IProperty findAnchor(PropertiesFile propsFile, String key)
-			{
-				List<IProperty> list = propsFile.getProperties();
-				for(int i = 0; i < list.size() - 1; i++)
-				{
-					IProperty prev = list.get(i);
-					IProperty next = list.get(i + 1);
-					if(prev.getKey().compareTo(key) < 0 && key.compareTo(next.getKey()) < 0)
-					{
-						return prev;
-					}
-				}
-				// pick up the last
-				if(list.isEmpty())
-				{
-					return null;
-				}
-				return list.get(list.size() - 1);
-			}
-		});
-	}
+            private IProperty findAnchor(PropertiesFile propsFile, String key) {
+                List<IProperty> list = propsFile.getProperties();
+                for (int i = 0; i < list.size() - 1; i++) {
+                    IProperty prev = list.get(i);
+                    IProperty next = list.get(i + 1);
+                    if (prev.getKey().compareTo(key) < 0 && key.compareTo(next.getKey()) < 0) {
+                        return prev;
+                    }
+                }
+                // pick up the last
+                if (list.isEmpty()) {
+                    return null;
+                }
+                return list.get(list.size() - 1);
+            }
+        });
+    }
 
-	private String getResourceName(PsiJavaFile javaFile)
-	{
-		String key = Messages.showInputDialog("Message resource name?", "stapler 18n", null);
-		if(key == null || key.length() == 0)
-		{
-			return null; // cancelled
-		}
-		return getMainClassName(javaFile.getName()) + '.' + key;
-	}
+    private String getResourceName(PsiJavaFile javaFile) {
+        String key = Messages.showInputDialog("Message resource name?", "stapler 18n", null);
+        if (key == null || key.length() == 0) {
+            return null; // cancelled
+        }
+        return getMainClassName(javaFile.getName()) + '.' + key;
+    }
 
-	private String getMainClassName(String name)
-	{
-		if(name.endsWith(".java"))
-		{
-			return name.substring(0, name.length() - 5);
-		}
-		return name;
-	}
+    private String getMainClassName(String name) {
+        if (name.endsWith(".java")) {
+            return name.substring(0, name.length() - 5);
+        }
+        return name;
+    }
 
-	/**
-	 * Locates <tt>Messages.properties</tt> in the same package
-	 */
-	private PsiFile findMessagesDotProperties(Project project, PsiJavaFile javaFile)
-	{
-		PsiJavaPackage pkg = JavaPsiFacade.getInstance(project).findPackage(javaFile.getPackageName());
-		for(PsiDirectory dir : pkg.getDirectories())
-		{
-			PsiFile props = dir.findFile("Messages.properties");
-			if(props != null)
-			{
-				return props;
-			}
-		}
-		return null;
-	}
+    /**
+     * Locates <tt>Messages.properties</tt> in the same package
+     */
+    private PsiFile findMessagesDotProperties(Project project, PsiJavaFile javaFile) {
+        PsiJavaPackage pkg = JavaPsiFacade.getInstance(project).findPackage(javaFile.getPackageName());
+        for (PsiDirectory dir : pkg.getDirectories()) {
+            PsiFile props = dir.findFile("Messages.properties");
+            if (props != null) {
+                return props;
+            }
+        }
+        return null;
+    }
 
-	/**
-	 * Finds the smallest {@link PsiElement} that encompasses the current selection.
-	 */
-	@Nullable
-	private PsiElement findSelectedPsiElement(SelectionModel selectionModel, PsiJavaFile javaFile)
-	{
-		PsiElement e = javaFile.findElementAt(selectionModel.getSelectionStart());
-		if(e == null)
-		{
-			return null;
-		}
+    /**
+     * Finds the smallest {@link PsiElement} that encompasses the current selection.
+     */
+    @Nullable
+    private PsiElement findSelectedPsiElement(SelectionModel selectionModel, PsiJavaFile javaFile) {
+        PsiElement e = javaFile.findElementAt(selectionModel.getSelectionStart());
+        if (e == null) {
+            return null;
+        }
 
-		while(true)
-		{
-			TextRange tr = e.getTextRange();
-			if(selectionModel.getSelectionEnd() <= tr.getEndOffset())
-			{
-				return e;
-			}
-			e = e.getParent();
-		}
-	}
+        while (true) {
+            TextRange tr = e.getTextRange();
+            if (selectionModel.getSelectionEnd() <= tr.getEndOffset()) {
+                return e;
+            }
+            e = e.getParent();
+        }
+    }
 
-	/**
-	 * Copied from the localizer code.
-	 * Converts a property name to a method name.
-	 */
-	protected String toJavaIdentifier(String key)
-	{
-		// TODO: this is fairly dumb implementation
-		return key.replace('.', '_');
-	}
+    /**
+     * Copied from the localizer code.
+     * Converts a property name to a method name.
+     */
+    protected String toJavaIdentifier(String key) {
+        // TODO: this is fairly dumb implementation
+        return key.replace('.', '_');
+    }
 }
